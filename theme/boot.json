@@ -1,0 +1,27 @@
+{
+  "name": "ModLoaderNeoUI",
+  "nickName": {
+    "cn": "ModLoader Neo 界面",
+    "en": "ModLoader Neo UI"
+  },
+  "version": "1.0.0",
+  "styleFileList": [],
+  "scriptFileList_earlyload": [],
+  "scriptFileList_inject_early": [],
+  "scriptFileList_preload": [],
+  "scriptFileList": [
+    "dist/ModLoaderNeoUI.js"
+  ],
+  "tweeFileList": [],
+  "imgFileList": [],
+  "imgFileReplaceList": [],
+  "additionFile": [],
+  "additionBinaryFile": [],
+  "addonPlugin": [],
+  "dependenceInfo": [
+    {
+      "modName": "ModLoaderGui",
+      "version": "^1.9.0"
+    }
+  ]
+}

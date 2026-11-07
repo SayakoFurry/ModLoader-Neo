@@ -1,0 +1,1300 @@
+#MyConfig {
+    --neo-cyan: #22d3ee;
+    --neo-violet: #a78bfa;
+    --neo-pink: #f0abfc;
+    --neo-ink: #dbeafe;
+    --neo-muted: #93a7bd;
+    --neo-panel: rgba(9, 14, 28, 0.96);
+    --neo-line: rgba(125, 211, 252, 0.22);
+}
+
+div#MyConfig {
+    z-index: 2147483000 !important;
+    width: min(1180px, 92vw) !important;
+    height: min(88vh, 920px) !important;
+    max-width: 92vw !important;
+    max-height: 92vh !important;
+    padding: 0 !important;
+    color: var(--neo-ink) !important;
+    background:
+        radial-gradient(900px 460px at 8% -8%, rgba(34, 211, 238, 0.16), transparent 62%),
+        radial-gradient(820px 460px at 108% 112%, rgba(167, 139, 250, 0.16), transparent 60%),
+        linear-gradient(155deg, rgba(15, 23, 42, 0.97), rgba(6, 10, 22, 0.985)) !important;
+    background-size: 180% 180% !important;
+    border: 1px solid var(--neo-line) !important;
+    border-radius: 20px !important;
+    box-shadow:
+        0 0 0 100vmax rgba(2, 6, 23, 0.62),
+        0 34px 100px rgba(0, 0, 0, 0.72),
+        0 0 70px rgba(34, 211, 238, 0.08) !important;
+    backdrop-filter: blur(18px) saturate(1.15);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(34, 211, 238, 0.7) rgba(2, 6, 23, 0.6);
+    animation: neoAurora 18s ease-in-out infinite;
+}
+
+#MyConfig:not([data-neo-ready="1"]) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body#MyConfig {
+    color: var(--neo-ink) !important;
+    background:
+        radial-gradient(900px 460px at 8% -8%, rgba(34, 211, 238, 0.16), transparent 62%),
+        radial-gradient(820px 460px at 108% 112%, rgba(167, 139, 250, 0.16), transparent 60%),
+        linear-gradient(155deg, rgba(15, 23, 42, 0.97), rgba(6, 10, 22, 0.985)) !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(34, 211, 238, 0.7) rgba(2, 6, 23, 0.6);
+}
+
+#MyConfig * {
+    box-sizing: border-box;
+}
+
+#MyConfig_wrapper {
+    padding: 22px 24px 26px !important;
+}
+
+#MyConfig_header {
+    position: relative;
+    margin: 0 0 10px !important;
+    padding: 2px 0 16px !important;
+    font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif !important;
+    font-size: clamp(20px, 2vw, 28px) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.09em !important;
+    line-height: 1.35 !important;
+    text-transform: none;
+    background: linear-gradient(90deg, #7dd3fc 0%, #a78bfa 30%, #f0abfc 55%, #7dd3fc 90%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent !important;
+    filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.18));
+    animation: neoTitleShine 7s linear infinite;
+}
+
+#MyConfig_header::after {
+    content: "";
+    display: block;
+    width: 104px;
+    height: 2px;
+    margin: 12px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--neo-cyan), var(--neo-violet), transparent);
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.8);
+    animation: neoUnderline 3.6s ease-in-out infinite;
+}
+
+#MyConfig .section_header_holder {
+    position: relative;
+    margin-top: 16px !important;
+    padding: 2px 2px 10px;
+    border-radius: 14px;
+}
+
+#MyConfig .section_header {
+    position: relative;
+    overflow: hidden;
+    margin: 8px 0 10px !important;
+    padding: 10px 16px 10px 20px !important;
+    border: 1px solid rgba(125, 211, 252, 0.2) !important;
+    border-radius: 12px !important;
+    background:
+        linear-gradient(90deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.9)) !important;
+    color: var(--neo-ink) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.16em !important;
+    text-shadow: 0 0 18px rgba(34, 211, 238, 0.22);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 8px 24px rgba(0, 0, 0, 0.34);
+}
+
+#MyConfig .section_header::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--neo-cyan), var(--neo-violet));
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.9);
+}
+
+#MyConfig .section_header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 22%, rgba(255, 255, 255, 0.16) 50%, transparent 78%);
+    transform: translateX(-140%);
+    animation: neoSheen 4.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+#MyConfig_section_header_2::after { animation-delay: 0.8s; }
+#MyConfig_section_header_3::after { animation-delay: 1.4s; }
+#MyConfig_section_header_4::after { animation-delay: 2s; }
+#MyConfig_section_header_5::after { animation-delay: 2.6s; }
+#MyConfig_section_header_6::after { animation-delay: 3.2s; }
+#MyConfig_section_header_7::after { animation-delay: 3.8s; }
+
+#MyConfig .config_var {
+    margin: 0 0 8px !important;
+    padding: 3px 4px;
+    border-radius: 10px;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+#MyConfig .config_var:hover {
+    background: rgba(148, 163, 184, 0.045);
+}
+
+#MyConfig .field_label {
+    display: inline-block;
+    margin: 3px 0 6px;
+    color: var(--neo-muted) !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.035em;
+}
+
+#MyConfig input[type="text"],
+#MyConfig input[type="file"],
+#MyConfig input[type="password"],
+#MyConfig input[type="number"],
+#MyConfig select,
+#MyConfig textarea {
+    padding: 7px 11px !important;
+    color: var(--neo-ink) !important;
+    background: rgba(2, 6, 23, 0.72) !important;
+    border: 1px solid rgba(71, 85, 105, 0.62) !important;
+    border-radius: 10px !important;
+    box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.45);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+    caret-color: var(--neo-cyan);
+}
+
+#MyConfig input[type="text"]:hover,
+#MyConfig input[type="file"]:hover,
+#MyConfig select:hover,
+#MyConfig textarea:hover {
+    border-color: rgba(34, 211, 238, 0.42) !important;
+}
+
+#MyConfig input[type="text"]:focus,
+#MyConfig input[type="file"]:focus,
+#MyConfig input[type="password"]:focus,
+#MyConfig input[type="number"]:focus,
+#MyConfig select:focus,
+#MyConfig textarea:focus {
+    width: auto;
+    min-height: 0;
+    outline: none !important;
+    background: rgba(2, 6, 23, 0.92) !important;
+    border-color: rgba(34, 211, 238, 0.85) !important;
+    box-shadow:
+        0 0 0 3px rgba(34, 211, 238, 0.13),
+        0 0 24px rgba(34, 211, 238, 0.18),
+        inset 0 1px 7px rgba(0, 0, 0, 0.45) !important;
+}
+
+#MyConfig textarea {
+    width: 100% !important;
+    min-height: 4.6em;
+    max-width: 100%;
+    font-family: "Cascadia Code", "Consolas", "Microsoft YaHei", monospace !important;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+#MyConfig textarea:focus {
+    width: 100% !important;
+    min-height: 4.6em;
+}
+
+#MyConfig select {
+    cursor: pointer;
+}
+
+#MyConfig select option {
+    color: var(--neo-ink);
+    background: #0b1222;
+}
+
+#MyConfig input[type="file"] {
+    padding: 5px !important;
+    cursor: pointer;
+}
+
+#MyConfig input[type="file"]::file-selector-button {
+    margin-right: 10px;
+    padding: 6px 14px;
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    border-radius: 8px;
+    color: #cffafe;
+    background: linear-gradient(180deg, rgba(14, 116, 144, 0.75), rgba(8, 47, 73, 0.8));
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#MyConfig input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(180deg, rgba(6, 182, 212, 0.8), rgba(14, 116, 144, 0.8));
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.28);
+    transform: translateY(-1px);
+}
+
+#MyConfig input[type="button"],
+#MyConfig button {
+    appearance: none;
+    min-width: 76px;
+    padding: 7px 15px !important;
+    color: #e2e8f0 !important;
+    background: linear-gradient(180deg, rgba(51, 65, 85, 0.96), rgba(30, 41, 59, 0.96)) !important;
+    border: 1px solid rgba(148, 163, 184, 0.34) !important;
+    border-radius: 10px !important;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        filter 0.18s ease;
+}
+
+#MyConfig input[type="button"]:hover,
+#MyConfig button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(34, 211, 238, 0.68) !important;
+    box-shadow:
+        0 0 0 1px rgba(34, 211, 238, 0.2),
+        0 10px 26px rgba(34, 211, 238, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    filter: brightness(1.08);
+}
+
+#MyConfig input[type="button"]:active,
+#MyConfig button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+#MyConfig input[type="button"]:focus-visible,
+#MyConfig button:focus-visible {
+    outline: none !important;
+    box-shadow:
+        0 0 0 3px rgba(34, 211, 238, 0.24),
+        0 0 24px rgba(34, 211, 238, 0.22) !important;
+}
+
+#MyConfig input.btn-outline-danger {
+    color: #fecaca !important;
+    background: linear-gradient(180deg, rgba(127, 29, 29, 0.5), rgba(69, 10, 10, 0.55)) !important;
+    border-color: rgba(248, 113, 113, 0.5) !important;
+}
+
+#MyConfig input.btn-outline-danger:hover {
+    border-color: rgba(248, 113, 113, 0.9) !important;
+    box-shadow: 0 0 24px rgba(248, 113, 113, 0.3) !important;
+}
+
+#MyConfig input.btn-outline-success {
+    color: #bbf7d0 !important;
+    background: linear-gradient(180deg, rgba(20, 83, 45, 0.55), rgba(5, 46, 22, 0.6)) !important;
+    border-color: rgba(74, 222, 128, 0.5) !important;
+}
+
+#MyConfig input.btn-outline-success:hover {
+    border-color: rgba(74, 222, 128, 0.9) !important;
+    box-shadow: 0 0 24px rgba(74, 222, 128, 0.28) !important;
+}
+
+#MyConfig input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--neo-cyan);
+    cursor: pointer;
+    transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+#MyConfig input[type="checkbox"]:hover {
+    transform: scale(1.16);
+    filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.55));
+}
+
+#MyConfig input.neo-ripple {
+    animation: neoBtnPress 0.48s ease-out;
+}
+
+#MyConfig::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#MyConfig::-webkit-scrollbar-track {
+    background: rgba(2, 6, 23, 0.6);
+    border-radius: 999px;
+}
+
+#MyConfig::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.85), rgba(139, 92, 246, 0.85));
+    border: 2px solid rgba(2, 6, 23, 0.75);
+    border-radius: 999px;
+}
+
+#MyConfig textarea::-webkit-scrollbar,
+#MyConfig select::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#MyConfig textarea::-webkit-scrollbar-thumb,
+#MyConfig select::-webkit-scrollbar-thumb {
+    background: rgba(71, 85, 105, 0.9);
+    border-radius: 999px;
+}
+
+#MyConfig_buttons_holder {
+    margin-top: 10px;
+}
+
+#MyConfig .section_desc {
+    padding: 8px 12px !important;
+    color: var(--neo-muted) !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(71, 85, 105, 0.45) !important;
+    border-radius: 10px !important;
+}
+
+#idLoadLogHtml {
+    padding: 10px 12px;
+    color: #cbd5e1;
+    background: rgba(2, 6, 23, 0.62);
+    border: 1px solid rgba(71, 85, 105, 0.45);
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+#startBannerModLoaderGui {
+    right: auto !important;
+    max-width: none !important;
+    white-space: nowrap;
+    left: 10px !important;
+    bottom: 12px !important;
+    padding: 5px 12px !important;
+    color: #a5f3fc !important;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94)) !important;
+    border: 1px solid rgba(34, 211, 238, 0.42) !important;
+    border-radius: 999px !important;
+    box-shadow:
+        0 0 20px rgba(34, 211, 238, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    cursor: pointer;
+    animation: neoBannerPulse 3.2s ease-in-out infinite;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#startBannerModLoaderGui:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 0 28px rgba(34, 211, 238, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+@keyframes neoAurora {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes neoTitleShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 220% center; }
+}
+
+@keyframes neoUnderline {
+    0%, 100% { opacity: 0.55; transform: scaleX(0.7); }
+    50% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes neoSheen {
+    0%, 55% { transform: translateX(-140%); }
+    85%, 100% { transform: translateX(140%); }
+}
+
+@keyframes neoBtnPress {
+    0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5); }
+    100% { box-shadow: 0 0 0 16px rgba(34, 211, 238, 0); }
+}
+
+@keyframes neoBannerPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(34, 211, 238, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+    50% { box-shadow: 0 0 26px rgba(34, 211, 238, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+}
+
+#MyConfig_section_0 {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    animation: none !important;
+}
+
+#MyConfig_section_0 .config_var {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#MyConfig_section_0 .config_var:hover {
+    background: transparent;
+}
+
+#MyConfig .neo-merged-away {
+    display: none !important;
+}
+
+.neo-toolbar-divider {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+    align-self: center;
+    background: rgba(125, 211, 252, 0.18);
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.12);
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_var {
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+    padding: 0 4px !important;
+    border-radius: 999px;
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_var::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #64748b;
+    box-shadow: 0 0 10px rgba(100, 116, 139, 0.65);
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-on::before {
+    background: #4ade80;
+    box-shadow: 0 0 12px #4ade80;
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-off::before {
+    background: #f87171;
+    box-shadow: 0 0 12px #f87171;
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-auto::before {
+    background: #fbbf24;
+    box-shadow: 0 0 12px #fbbf24;
+}
+
+#MyConfig_section_0 #MyConfig_SafeModeState_R_field_label {
+    margin: 0 !important;
+    white-space: nowrap;
+}
+
+#MyConfig_section_0 #MyConfig_field_SafeModeState_R {
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 138px;
+    max-width: 560px;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    text-overflow: ellipsis;
+    border-radius: 999px !important;
+    font-weight: 650 !important;
+    text-align: center;
+}
+
+#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-on {
+    color: #bbf7d0 !important;
+    background: rgba(20, 83, 45, 0.45) !important;
+    border-color: rgba(74, 222, 128, 0.55) !important;
+    box-shadow: 0 0 18px rgba(74, 222, 128, 0.16), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
+}
+
+#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-off {
+    color: #fecaca !important;
+    background: rgba(127, 29, 29, 0.38) !important;
+    border-color: rgba(248, 113, 113, 0.5) !important;
+    box-shadow: 0 0 18px rgba(248, 113, 113, 0.14), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
+}
+
+#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-auto {
+    color: #fde68a !important;
+    background: rgba(120, 53, 15, 0.38) !important;
+    border-color: rgba(251, 191, 36, 0.5) !important;
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.14), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
+}
+
+.neo-subsection-title {
+    margin: 20px 0 6px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(125, 211, 252, 0.14);
+    color: var(--neo-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.neo-add-row,
+.neo-remove-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    margin: 4px 0 6px;
+}
+
+.neo-add-row #MyConfig_AddMod_I_var {
+    flex: 1 1 460px;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.neo-add-row #MyConfig_AddMod_I_field_label {
+    margin: 0 !important;
+    white-space: normal;
+}
+
+.neo-add-row #MyConfig_field_AddMod_I {
+    flex: 1;
+    min-width: 180px;
+}
+
+.neo-add-row #MyConfig_AddMod_b_var,
+.neo-remove-row #MyConfig_RemoveMod_b_var {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.neo-remove-row {
+    align-items: center;
+    margin-top: 8px;
+}
+
+.neo-remove-row #MyConfig_RemoveMod_s_var {
+    flex: 1 1 320px;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.neo-remove-row #MyConfig_RemoveMod_s_field_label {
+    margin: 0 !important;
+}
+
+.neo-remove-row #MyConfig_field_RemoveMod_s {
+    flex: 1;
+    min-width: 160px;
+}
+
+#MyConfig_AddMod_R_var {
+    margin-top: 6px !important;
+}
+
+#MyConfig_field_AddMod_R {
+    width: 100% !important;
+}
+
+#MyConfig_field_NowLoadedModeList_r {
+    min-height: 220px;
+    height: 30vh;
+    max-height: 420px;
+}
+
+#MyConfig_field_NowSideLoadModeList_r {
+    min-height: 120px;
+    height: 16vh;
+    max-height: 240px;
+}
+
+#MyConfig .enable-order-component-host {
+    display: block !important;
+    padding: 12px 0 !important;
+    border-top: 1px solid rgba(125, 211, 252, 0.12);
+}
+
+#MyConfig .enable-order-component-host:first-of-type {
+    padding-top: 0 !important;
+    border-top: none;
+}
+
+#MyConfig .enable-order-component-title {
+    margin: 0 0 10px !important;
+    color: var(--neo-ink) !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 16px rgba(34, 211, 238, 0.14);
+}
+
+#MyConfig .neo-order-enhanced .enable-order-component-enable-select-button,
+#MyConfig .neo-order-enhanced .enable-order-component-enable-disable-select-button,
+#MyConfig .neo-order-enhanced .enable-order-component-disable-select-button,
+#MyConfig .neo-order-enhanced .order-component-move-button,
+#MyConfig .enable-order-component-host.neo-order-enhanced > hr {
+    display: none !important;
+}
+
+#MyConfig .neo-order-status {
+    margin: 8px 0 2px;
+    padding: 6px 10px;
+    color: #bbf7d0;
+    background: rgba(20, 83, 45, 0.35);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#MyConfig .neo-order-status-error {
+    color: #fecaca;
+    background: rgba(127, 29, 29, 0.35);
+    border-color: rgba(248, 113, 113, 0.45);
+}
+
+#MyConfig .enable-order-component-select,
+#MyConfig .order-component-select {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    font-size: 14px !important;
+}
+
+#MyConfig .neo-order-list-empty {
+    display: none !important;
+}
+
+#MyConfig .neo-order-group-label {
+    margin: 14px 0 6px;
+    color: var(--neo-muted);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+#MyConfig .neo-mod-item {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px !important;
+    color: var(--neo-ink) !important;
+    background: rgba(15, 23, 42, 0.55) !important;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 10px;
+    transition:
+        border-color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#MyConfig .neo-mod-item:hover {
+    background: rgba(30, 41, 59, 0.65) !important;
+    border-color: rgba(34, 211, 238, 0.45);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#MyConfig .neo-mod-item[style*="pink"] {
+    color: var(--neo-ink) !important;
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.1)) !important;
+    border-color: rgba(34, 211, 238, 0.6) !important;
+}
+
+#MyConfig .neo-mod-item.neo-dragging {
+    opacity: 0.55;
+    transform: scale(0.99);
+    border-style: dashed;
+}
+
+#MyConfig .neo-mod-item.neo-drop-before {
+    box-shadow: inset 0 2px 0 #22d3ee, 0 0 18px rgba(34, 211, 238, 0.16);
+}
+
+#MyConfig .neo-mod-item.neo-drop-after {
+    box-shadow: inset 0 -2px 0 #22d3ee, 0 0 18px rgba(34, 211, 238, 0.16);
+}
+
+#MyConfig .neo-drag-handle {
+    flex: 0 0 auto;
+    width: 22px;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: -2px;
+    text-align: center;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+#MyConfig .neo-drag-handle:hover {
+    color: #22d3ee;
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+}
+
+#MyConfig .neo-drag-handle:active {
+    cursor: grabbing;
+}
+
+#MyConfig .neo-mod-main {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+#MyConfig .neo-mod-name {
+    overflow: hidden;
+    color: #e2e8f0;
+    font-size: 13.5px;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#MyConfig .neo-mod-meta {
+    margin-top: 2px;
+    overflow: hidden;
+    color: var(--neo-muted);
+    font-size: 11.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#MyConfig .neo-mod-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 6px;
+}
+
+#MyConfig .neo-icon-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 30px !important;
+    height: 28px;
+    min-width: 30px !important;
+    padding: 0 !important;
+    color: #cbd5e1 !important;
+    background: rgba(15, 23, 42, 0.7) !important;
+    border: 1px solid rgba(71, 85, 105, 0.6) !important;
+    border-radius: 8px !important;
+    font-size: 11px !important;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        color 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#MyConfig .neo-icon-btn:hover:not(:disabled) {
+    color: #a5f3fc !important;
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: rgba(34, 211, 238, 0.6) !important;
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.15);
+    transform: translateY(-1px);
+}
+
+#MyConfig .neo-icon-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#MyConfig .neo-text-btn {
+    min-width: 50px !important;
+    padding: 6px 10px !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        color 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+#MyConfig .neo-text-btn.neo-danger {
+    color: #fecaca !important;
+    background: rgba(127, 29, 29, 0.35) !important;
+    border-color: rgba(248, 113, 113, 0.4) !important;
+}
+
+#MyConfig .neo-text-btn.neo-danger:hover {
+    border-color: rgba(248, 113, 113, 0.8) !important;
+    box-shadow: 0 0 16px rgba(248, 113, 113, 0.2);
+    transform: translateY(-1px);
+}
+
+#MyConfig .neo-text-btn.neo-success {
+    color: #bbf7d0 !important;
+    background: rgba(20, 83, 45, 0.4) !important;
+    border-color: rgba(74, 222, 128, 0.4) !important;
+}
+
+#MyConfig .neo-text-btn.neo-success:hover {
+    border-color: rgba(74, 222, 128, 0.8) !important;
+    box-shadow: 0 0 16px rgba(74, 222, 128, 0.2);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+    #MyConfig .neo-mod-item {
+        gap: 8px;
+        padding: 9px 10px !important;
+    }
+    #MyConfig .neo-icon-btn {
+        width: 28px !important;
+        min-width: 28px !important;
+    }
+    #MyConfig .neo-text-btn {
+        min-width: 44px !important;
+        padding: 6px 8px !important;
+    }
+}
+
+#MyConfig_section_4 .config_var {
+    display: none !important;
+}
+
+#MyConfig .neo-readme-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 10px;
+}
+
+#MyConfig .neo-readme-heading {
+    color: #fde047 !important;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+#MyConfig .neo-readme-host {
+    display: flex;
+    gap: 16px;
+    height: min(57vh, 580px);
+    min-height: 340px;
+}
+
+#MyConfig .neo-readme-sidebar {
+    display: flex;
+    flex: 0 0 260px;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+}
+
+#MyConfig .neo-readme-search {
+    width: 100% !important;
+}
+
+#MyConfig .neo-readme-list {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 6px;
+    background: rgba(2, 6, 23, 0.4);
+    border: 1px solid rgba(71, 85, 105, 0.45);
+    border-radius: 12px;
+}
+
+#MyConfig .neo-readme-item {
+    display: block;
+    overflow-wrap: anywhere;
+    width: 100%;
+    min-width: 0 !important;
+    margin: 0 0 4px;
+    padding: 9px 12px !important;
+    color: var(--neo-muted) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+}
+
+#MyConfig .neo-readme-item:hover {
+    color: #e2e8f0 !important;
+    background: rgba(148, 163, 184, 0.08) !important;
+    border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+#MyConfig .neo-readme-item.neo-readme-item-active {
+    color: #e0f2fe !important;
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(167, 139, 250, 0.08)) !important;
+    border-color: rgba(34, 211, 238, 0.5) !important;
+    box-shadow: inset 3px 0 0 #22d3ee !important;
+}
+
+#MyConfig .neo-readme-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+}
+
+#MyConfig .neo-readme-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(125, 211, 252, 0.15);
+}
+
+#MyConfig .neo-readme-titlewrap {
+    min-width: 0;
+}
+
+#MyConfig .neo-readme-title {
+    overflow-wrap: anywhere;
+    color: #d9f99d !important;
+    font-size: 22px !important;
+    font-weight: 800;
+    line-height: 1.25;
+    text-shadow: 0 0 18px rgba(217, 249, 157, 0.18);
+}
+
+#MyConfig .neo-readme-version {
+    margin-top: 4px;
+    color: var(--neo-muted);
+    font-size: 12px;
+}
+
+#MyConfig .neo-readme-version span {
+    color: #fca5a5;
+    font-weight: 700;
+}
+
+#MyConfig .neo-readme-back {
+    flex: 0 0 auto;
+    min-width: 116px !important;
+    padding: 8px 14px !important;
+}
+
+#MyConfig .neo-readme-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px 4px 20px;
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+#MyConfig .neo-readme-body h1,
+#MyConfig .neo-readme-body h2,
+#MyConfig .neo-readme-body h3,
+#MyConfig .neo-readme-body h4,
+#MyConfig .neo-readme-body h5,
+#MyConfig .neo-readme-body h6 {
+    margin: 16px 0 8px;
+    color: #fde047;
+    line-height: 1.3;
+}
+
+#MyConfig .neo-readme-body h1 {
+    margin-top: 6px;
+    font-size: 22px;
+}
+
+#MyConfig .neo-readme-body h2 {
+    font-size: 18px;
+}
+
+#MyConfig .neo-readme-body h3 {
+    font-size: 15px;
+}
+
+#MyConfig .neo-readme-body p {
+    margin: 0 0 10px;
+}
+
+#MyConfig .neo-readme-body ul,
+#MyConfig .neo-readme-body ol {
+    margin: 0 0 10px;
+    padding-left: 1.5em;
+}
+
+#MyConfig .neo-readme-body li {
+    margin: 2px 0;
+}
+
+#MyConfig .neo-readme-body code {
+    padding: 1px 5px;
+    color: #a5f3fc;
+    background: rgba(2, 6, 23, 0.75);
+    border-radius: 4px;
+    font-family: "Cascadia Code", "Consolas", monospace;
+}
+
+#MyConfig .neo-readme-body pre {
+    margin: 10px 0;
+    padding: 12px;
+    overflow: auto;
+    background: rgba(2, 6, 23, 0.7);
+    border: 1px solid rgba(71, 85, 105, 0.45);
+    border-radius: 10px;
+}
+
+#MyConfig .neo-readme-body pre code {
+    padding: 0;
+    background: transparent;
+}
+
+#MyConfig .neo-readme-body blockquote {
+    margin: 10px 0;
+    padding: 8px 12px;
+    color: #cbd5e1;
+    background: rgba(15, 23, 42, 0.55);
+    border-left: 3px solid #22d3ee;
+    border-radius: 0 8px 8px 0;
+}
+
+#MyConfig .neo-readme-body a {
+    color: #67e8f9;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(103, 232, 249, 0.5);
+}
+
+#MyConfig .neo-readme-body a:hover {
+    color: #a5f3fc;
+    border-bottom-color: #a5f3fc;
+}
+
+#MyConfig .neo-readme-body img {
+    max-width: 100%;
+    height: auto;
+    margin: 6px 0;
+    border-radius: 8px;
+}
+
+#MyConfig .neo-readme-body hr {
+    margin: 14px 0;
+    border: 0;
+    border-top: 1px solid rgba(125, 211, 252, 0.18);
+}
+
+#MyConfig .neo-readme-loading,
+#MyConfig .neo-readme-empty {
+    padding: 10px 0;
+    color: var(--neo-muted);
+}
+
+#MyConfig .neo-readme-error {
+    padding: 10px 0;
+    color: #fecaca;
+}
+
+@media (max-width: 720px) {
+    #MyConfig .neo-readme-host {
+        flex-direction: column;
+        height: auto;
+        min-height: 0;
+    }
+    #MyConfig .neo-readme-sidebar {
+        flex: 0 0 auto;
+    }
+    #MyConfig .neo-readme-list {
+        max-height: 180px;
+    }
+    #MyConfig .neo-readme-content {
+        min-height: 320px;
+    }
+}
+
+#MyConfig .neo-config-loading {
+    padding: 16px;
+    color: var(--neo-muted);
+    font-size: 13px;
+}
+
+#MyConfig .neo-config-loading-error {
+    color: #fecaca;
+}
+
+#neo-tabbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 4px -4px 14px;
+    padding: 8px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: rgba(9, 14, 28, 0.96);
+    border-bottom: 1px solid rgba(125, 211, 252, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+#neo-tabbar::-webkit-scrollbar {
+    display: none;
+}
+
+.neo-tab {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    color: var(--neo-muted);
+    background: rgba(15, 23, 42, 0.66);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+        color 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.neo-tab:hover {
+    color: #e2e8f0;
+    border-color: rgba(34, 211, 238, 0.55);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(34, 211, 238, 0.12);
+}
+
+.neo-tab-active {
+    color: #06121f !important;
+    background: linear-gradient(135deg, #67e8f9, #a78bfa 60%, #f0abfc) !important;
+    border-color: transparent !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 0 22px rgba(34, 211, 238, 0.35);
+    animation: neoTabPop 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.neo-tab-badge {
+    min-width: 18px;
+    padding: 1px 6px;
+    color: #a5f3fc;
+    background: rgba(2, 6, 23, 0.55);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.neo-tab-active .neo-tab-badge {
+    color: #082f49;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+#MyConfig .neo-tab-hidden {
+    display: none !important;
+}
+
+#MyConfig .neo-tab-panel {
+    animation: none !important;
+}
+
+#MyConfig .neo-tab-panel.neo-tab-enter {
+    animation: neoTabIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+#MyConfig .neo-tab-panel > .section_header {
+    display: none !important;
+}
+
+@keyframes neoTabIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neoTabPop {
+    0% { transform: scale(0.94); }
+    60% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 720px) {
+    div#MyConfig {
+        width: 96vw !important;
+        height: 92vh !important;
+        border-radius: 14px !important;
+    }
+    #MyConfig_wrapper {
+        padding: 16px 14px 20px !important;
+    }
+    #MyConfig .section_header {
+        font-size: 12.5px !important;
+        letter-spacing: 0.1em !important;
+    }
+    #MyConfig_field_NowLoadedModeList_r {
+        min-height: 180px;
+        height: 26vh;
+    }
+    #MyConfig_field_NowSideLoadModeList_r {
+        min-height: 100px;
+        height: 14vh;
+    }
+    #MyConfig_section_0 #MyConfig_field_SafeModeState_R {
+        min-width: 110px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #MyConfig,
+    #MyConfig *,
+    #startBannerModLoaderGui {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+#MyConfig .neo-log-export,
+#MyConfig .neo-cache-clear {
+    margin-left: 8px;
+}
