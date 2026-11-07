@@ -9,7 +9,7 @@ ModLoader Neo 是一个基于 ModLoader 的重建整理版，包含：
 - 兼容 `ModLoader` 与 `ModLoader Neo` 两种 `dependenceInfo`
 - v1 + v2 双签名 APK 构建脚本
 
-本仓库只包含加载器和构建脚本，您可以从我们的Packages下载我们构建好的Neo版本。
+本仓库只包含加载器和构建脚本，您可以从我们的Releases下载我们构建好的Neo版本。
 
 ## 目录
 
