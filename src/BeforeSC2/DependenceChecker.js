@@ -35,7 +35,7 @@ class DependenceChecker {
      */
     getLoaderVersionCandidates(modName) {
         const internal = this.gModUtils.version;
-        const neo = this.gModUtils.neoVersion || '1.0.0';
+        const neo = this.gModUtils.neoVersion || '1.0.6';
         if (modName === 'ModLoader') {
             return [internal, neo];
         }

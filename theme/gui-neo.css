@@ -1,36 +1,62 @@
+/* ModLoader Neo · OriginOS 风格界面 */
+
 #MyConfig {
-    --neo-cyan: #22d3ee;
-    --neo-violet: #a78bfa;
-    --neo-pink: #f0abfc;
-    --neo-ink: #dbeafe;
-    --neo-muted: #93a7bd;
-    --neo-panel: rgba(9, 14, 28, 0.96);
-    --neo-line: rgba(125, 211, 252, 0.22);
+    --neo-font: "HarmonyOS Sans SC", "MiSans", "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+    --neo-bg: #f3f4f6;
+    --neo-side: #f7f8fa;
+    --neo-surface: #ffffff;
+    --neo-soft: #f4f6f8;
+    --neo-line: rgba(20, 28, 45, 0.07);
+    --neo-line-strong: rgba(20, 28, 45, 0.12);
+    --neo-text: #191c21;
+    --neo-text-2: #5c6470;
+    --neo-muted: #9299a3;
+    --neo-accent: #2f6bff;
+    --neo-accent-deep: #2257dc;
+    --neo-accent-soft: #e6eeff;
+    --neo-danger: #d83b3b;
+    --neo-shadow: 0 10px 30px rgba(20, 30, 55, 0.06);
 }
 
 div#MyConfig {
+    color-scheme: light;
     z-index: 2147483000 !important;
-    width: min(1180px, 92vw) !important;
-    height: min(88vh, 920px) !important;
-    max-width: 92vw !important;
-    max-height: 92vh !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(1200px, 94vw) !important;
+    height: min(880px, 90vh) !important;
+    max-width: 94vw !important;
+    max-height: 90vh !important;
     padding: 0 !important;
-    color: var(--neo-ink) !important;
-    background:
-        radial-gradient(900px 460px at 8% -8%, rgba(34, 211, 238, 0.16), transparent 62%),
-        radial-gradient(820px 460px at 108% 112%, rgba(167, 139, 250, 0.16), transparent 60%),
-        linear-gradient(155deg, rgba(15, 23, 42, 0.97), rgba(6, 10, 22, 0.985)) !important;
-    background-size: 180% 180% !important;
-    border: 1px solid var(--neo-line) !important;
-    border-radius: 20px !important;
+    overflow: hidden !important;
+    color: var(--neo-text) !important;
+    font-family: var(--neo-font) !important;
+    background: var(--neo-bg) !important;
+    border: var(--neo-border-width, 1px) solid var(--neo-border-color, #d9dee6) !important;
+    border-radius: var(--neo-radius, 24px) !important;
     box-shadow:
-        0 0 0 100vmax rgba(2, 6, 23, 0.62),
-        0 34px 100px rgba(0, 0, 0, 0.72),
-        0 0 70px rgba(34, 211, 238, 0.08) !important;
-    backdrop-filter: blur(18px) saturate(1.15);
-    scrollbar-width: thin;
-    scrollbar-color: rgba(34, 211, 238, 0.7) rgba(2, 6, 23, 0.6);
-    animation: neoAurora 18s ease-in-out infinite;
+        0 0 0 100vmax rgba(6, 10, 20, 0.58),
+        0 30px 90px rgba(0, 0, 0, 0.52),
+        0 4px 18px rgba(0, 0, 0, 0.22) !important;
+}
+div#MyConfig[data-neo-glow="0"] {
+    box-shadow: 0 0 0 100vmax rgba(6, 10, 20, 0.58), 0 24px 70px rgba(0, 0, 0, 0.45) !important;
+}
+
+body#MyConfig {
+    color-scheme: light;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    color: var(--neo-text) !important;
+    font-family: var(--neo-font) !important;
+    background: var(--neo-bg) !important;
 }
 
 #MyConfig:not([data-neo-ready="1"]) {
@@ -39,1262 +65,2472 @@ div#MyConfig {
     pointer-events: none !important;
 }
 
-body#MyConfig {
-    color: var(--neo-ink) !important;
-    background:
-        radial-gradient(900px 460px at 8% -8%, rgba(34, 211, 238, 0.16), transparent 62%),
-        radial-gradient(820px 460px at 108% 112%, rgba(167, 139, 250, 0.16), transparent 60%),
-        linear-gradient(155deg, rgba(15, 23, 42, 0.97), rgba(6, 10, 22, 0.985)) !important;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(34, 211, 238, 0.7) rgba(2, 6, 23, 0.6);
-}
-
 #MyConfig * {
     box-sizing: border-box;
 }
 
 #MyConfig_wrapper {
-    padding: 22px 24px 26px !important;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
 }
 
 #MyConfig_header {
+    display: none !important;
+}
+
+#MyConfig .neo-legacy-hidden,
+#MyConfig .neo-merged-away,
+#MyConfig .neo-tab-hidden {
+    display: none !important;
+}
+
+#MyConfig .neo-shell {
     position: relative;
-    margin: 0 0 10px !important;
-    padding: 2px 0 16px !important;
-    font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif !important;
-    font-size: clamp(20px, 2vw, 28px) !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.09em !important;
-    line-height: 1.35 !important;
-    text-transform: none;
-    background: linear-gradient(90deg, #7dd3fc 0%, #a78bfa 30%, #f0abfc 55%, #7dd3fc 90%);
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent !important;
-    filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.18));
-    animation: neoTitleShine 7s linear infinite;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--neo-bg);
 }
 
-#MyConfig_header::after {
-    content: "";
-    display: block;
-    width: 104px;
-    height: 2px;
-    margin: 12px auto 0;
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, var(--neo-cyan), var(--neo-violet), transparent);
-    box-shadow: 0 0 14px rgba(34, 211, 238, 0.8);
-    animation: neoUnderline 3.6s ease-in-out infinite;
+/* ===== 左侧栏 ===== */
+
+#MyConfig .neo-sidebar {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 0;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px 18px;
+    background:
+        radial-gradient(420px 260px at -10% -10%, rgba(47, 107, 255, 0.045), transparent 70%),
+        linear-gradient(180deg, #f7f8fa 0%, #f2f3f6 100%);
+    border-right: 1px solid var(--neo-line);
 }
 
-#MyConfig .section_header_holder {
-    position: relative;
-    margin-top: 16px !important;
-    padding: 2px 2px 10px;
-    border-radius: 14px;
+#MyConfig .neo-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 8px 4px;
 }
 
-#MyConfig .section_header {
+#MyConfig .neo-brand-mark {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 13px;
     position: relative;
     overflow: hidden;
-    margin: 8px 0 10px !important;
-    padding: 10px 16px 10px 20px !important;
-    border: 1px solid rgba(125, 211, 252, 0.2) !important;
-    border-radius: 12px !important;
     background:
-        linear-gradient(90deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.9)) !important;
-    color: var(--neo-ink) !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.16em !important;
-    text-shadow: 0 0 18px rgba(34, 211, 238, 0.22);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.07),
-        0 8px 24px rgba(0, 0, 0, 0.34);
+        radial-gradient(70% 90% at 15% 0%, rgba(255, 255, 255, 0.55), transparent 60%),
+        linear-gradient(135deg, #ffb36b 0%, #ff669c 38%, #8b6bff 68%, #4a8dff 100%);
+    box-shadow: 0 8px 18px rgba(92, 88, 255, 0.22);
 }
-
-#MyConfig .section_header::before {
-    content: "";
+#MyConfig .neo-brand-mark span,
+#MyConfig .neo-brand-mark span::before {
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--neo-cyan), var(--neo-violet));
-    box-shadow: 0 0 14px rgba(34, 211, 238, 0.9);
-}
-
-#MyConfig .section_header::after {
     content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, transparent 22%, rgba(255, 255, 255, 0.16) 50%, transparent 78%);
-    transform: translateX(-140%);
-    animation: neoSheen 4.8s ease-in-out infinite;
-    pointer-events: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.92);
+    left: 15px;
+    top: 15px;
+}
+#MyConfig .neo-brand-mark span::before {
+    left: 9px;
+    top: 9px;
+    opacity: 0.6;
 }
 
-#MyConfig_section_header_2::after { animation-delay: 0.8s; }
-#MyConfig_section_header_3::after { animation-delay: 1.4s; }
-#MyConfig_section_header_4::after { animation-delay: 2s; }
-#MyConfig_section_header_5::after { animation-delay: 2.6s; }
-#MyConfig_section_header_6::after { animation-delay: 3.2s; }
-#MyConfig_section_header_7::after { animation-delay: 3.8s; }
-
-#MyConfig .config_var {
-    margin: 0 0 8px !important;
-    padding: 3px 4px;
-    border-radius: 10px;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
+#MyConfig .neo-brand-text {
+    min-width: 0;
 }
-
-#MyConfig .config_var:hover {
-    background: rgba(148, 163, 184, 0.045);
+#MyConfig .neo-brand-name {
+    font-size: 19px;
+    line-height: 1.2;
+    font-weight: 760;
+    letter-spacing: -0.02em;
+    color: var(--neo-text);
 }
-
-#MyConfig .field_label {
+#MyConfig .neo-brand-neo {
     display: inline-block;
-    margin: 3px 0 6px;
-    color: var(--neo-muted) !important;
-    font-size: 12.5px !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.035em;
+    margin-left: 3px;
+    padding: 2px 6px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #3558d6;
+    background: #e7edff;
+    vertical-align: 1px;
+}
+#MyConfig .neo-brand-version {
+    margin-top: 3px;
+    font-size: 11px;
+    color: var(--neo-muted);
+    letter-spacing: 0.01em;
 }
 
-#MyConfig input[type="text"],
-#MyConfig input[type="file"],
-#MyConfig input[type="password"],
-#MyConfig input[type="number"],
-#MyConfig select,
-#MyConfig textarea {
-    padding: 7px 11px !important;
-    color: var(--neo-ink) !important;
-    background: rgba(2, 6, 23, 0.72) !important;
-    border: 1px solid rgba(71, 85, 105, 0.62) !important;
-    border-radius: 10px !important;
-    box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.45);
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
-    caret-color: var(--neo-cyan);
+#MyConfig .neo-side-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 11px;
+    border-radius: 11px;
+    background: #eceef2;
+    border: 1px solid transparent;
+    transition: background 0.18s ease, border-color 0.18s ease;
 }
-
-#MyConfig input[type="text"]:hover,
-#MyConfig input[type="file"]:hover,
-#MyConfig select:hover,
-#MyConfig textarea:hover {
-    border-color: rgba(34, 211, 238, 0.42) !important;
+#MyConfig .neo-side-search:focus-within {
+    background: #fff;
+    border-color: rgba(47, 107, 255, 0.35);
+    box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.08);
 }
-
-#MyConfig input[type="text"]:focus,
-#MyConfig input[type="file"]:focus,
-#MyConfig input[type="password"]:focus,
-#MyConfig input[type="number"]:focus,
-#MyConfig select:focus,
-#MyConfig textarea:focus {
-    width: auto;
-    min-height: 0;
-    outline: none !important;
-    background: rgba(2, 6, 23, 0.92) !important;
-    border-color: rgba(34, 211, 238, 0.85) !important;
-    box-shadow:
-        0 0 0 3px rgba(34, 211, 238, 0.13),
-        0 0 24px rgba(34, 211, 238, 0.18),
-        inset 0 1px 7px rgba(0, 0, 0, 0.45) !important;
-}
-
-#MyConfig textarea {
-    width: 100% !important;
-    min-height: 4.6em;
-    max-width: 100%;
-    font-family: "Cascadia Code", "Consolas", "Microsoft YaHei", monospace !important;
-    line-height: 1.5;
-    resize: vertical;
-}
-
-#MyConfig textarea:focus {
-    width: 100% !important;
-    min-height: 4.6em;
-}
-
-#MyConfig select {
-    cursor: pointer;
-}
-
-#MyConfig select option {
-    color: var(--neo-ink);
-    background: #0b1222;
-}
-
-#MyConfig input[type="file"] {
-    padding: 5px !important;
-    cursor: pointer;
-}
-
-#MyConfig input[type="file"]::file-selector-button {
-    margin-right: 10px;
-    padding: 6px 14px;
-    border: 1px solid rgba(34, 211, 238, 0.45);
-    border-radius: 8px;
-    color: #cffafe;
-    background: linear-gradient(180deg, rgba(14, 116, 144, 0.75), rgba(8, 47, 73, 0.8));
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-#MyConfig input[type="file"]::file-selector-button:hover {
-    background: linear-gradient(180deg, rgba(6, 182, 212, 0.8), rgba(14, 116, 144, 0.8));
-    box-shadow: 0 0 18px rgba(34, 211, 238, 0.28);
-    transform: translateY(-1px);
-}
-
-#MyConfig input[type="button"],
-#MyConfig button {
-    appearance: none;
-    min-width: 76px;
-    padding: 7px 15px !important;
-    color: #e2e8f0 !important;
-    background: linear-gradient(180deg, rgba(51, 65, 85, 0.96), rgba(30, 41, 59, 0.96)) !important;
-    border: 1px solid rgba(148, 163, 184, 0.34) !important;
-    border-radius: 10px !important;
-    font-weight: 650;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.34),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease,
-        filter 0.18s ease;
-}
-
-#MyConfig input[type="button"]:hover,
-#MyConfig button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(34, 211, 238, 0.68) !important;
-    box-shadow:
-        0 0 0 1px rgba(34, 211, 238, 0.2),
-        0 10px 26px rgba(34, 211, 238, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    filter: brightness(1.08);
-}
-
-#MyConfig input[type="button"]:active,
-#MyConfig button:active {
-    transform: translateY(0) scale(0.97);
-}
-
-#MyConfig input[type="button"]:focus-visible,
-#MyConfig button:focus-visible {
-    outline: none !important;
-    box-shadow:
-        0 0 0 3px rgba(34, 211, 238, 0.24),
-        0 0 24px rgba(34, 211, 238, 0.22) !important;
-}
-
-#MyConfig input.btn-outline-danger {
-    color: #fecaca !important;
-    background: linear-gradient(180deg, rgba(127, 29, 29, 0.5), rgba(69, 10, 10, 0.55)) !important;
-    border-color: rgba(248, 113, 113, 0.5) !important;
-}
-
-#MyConfig input.btn-outline-danger:hover {
-    border-color: rgba(248, 113, 113, 0.9) !important;
-    box-shadow: 0 0 24px rgba(248, 113, 113, 0.3) !important;
-}
-
-#MyConfig input.btn-outline-success {
-    color: #bbf7d0 !important;
-    background: linear-gradient(180deg, rgba(20, 83, 45, 0.55), rgba(5, 46, 22, 0.6)) !important;
-    border-color: rgba(74, 222, 128, 0.5) !important;
-}
-
-#MyConfig input.btn-outline-success:hover {
-    border-color: rgba(74, 222, 128, 0.9) !important;
-    box-shadow: 0 0 24px rgba(74, 222, 128, 0.28) !important;
-}
-
-#MyConfig input[type="checkbox"] {
+#MyConfig .neo-side-search .neo-icon {
+    color: #8c939e;
     width: 16px;
     height: 16px;
-    accent-color: var(--neo-cyan);
-    cursor: pointer;
-    transition: transform 0.16s ease, filter 0.16s ease;
+}
+#MyConfig .neo-side-search input {
+    flex: 1;
+    min-width: 0;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    color: var(--neo-text) !important;
+}
+#MyConfig .neo-side-search input::placeholder {
+    color: #a2a8b1;
+}
+#MyConfig .neo-side-search input::-webkit-search-cancel-button {
+    display: none;
 }
 
-#MyConfig input[type="checkbox"]:hover {
-    transform: scale(1.16);
-    filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.55));
+#MyConfig .neo-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
-#MyConfig input.neo-ripple {
-    animation: neoBtnPress 0.48s ease-out;
-}
-
-#MyConfig::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-#MyConfig::-webkit-scrollbar-track {
-    background: rgba(2, 6, 23, 0.6);
-    border-radius: 999px;
-}
-
-#MyConfig::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(34, 211, 238, 0.85), rgba(139, 92, 246, 0.85));
-    border: 2px solid rgba(2, 6, 23, 0.75);
-    border-radius: 999px;
-}
-
-#MyConfig textarea::-webkit-scrollbar,
-#MyConfig select::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-#MyConfig textarea::-webkit-scrollbar-thumb,
-#MyConfig select::-webkit-scrollbar-thumb {
-    background: rgba(71, 85, 105, 0.9);
-    border-radius: 999px;
-}
-
-#MyConfig_buttons_holder {
-    margin-top: 10px;
-}
-
-#MyConfig .section_desc {
-    padding: 8px 12px !important;
-    color: var(--neo-muted) !important;
-    background: rgba(15, 23, 42, 0.6) !important;
-    border: 1px solid rgba(71, 85, 105, 0.45) !important;
-    border-radius: 10px !important;
-}
-
-#idLoadLogHtml {
-    padding: 10px 12px;
-    color: #cbd5e1;
-    background: rgba(2, 6, 23, 0.62);
-    border: 1px solid rgba(71, 85, 105, 0.45);
-    border-radius: 10px;
-    line-height: 1.5;
-}
-
-#startBannerModLoaderGui {
-    right: auto !important;
-    max-width: none !important;
-    white-space: nowrap;
-    left: 10px !important;
-    bottom: 12px !important;
-    padding: 5px 12px !important;
-    color: #a5f3fc !important;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.94)) !important;
-    border: 1px solid rgba(34, 211, 238, 0.42) !important;
-    border-radius: 999px !important;
-    box-shadow:
-        0 0 20px rgba(34, 211, 238, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    cursor: pointer;
-    animation: neoBannerPulse 3.2s ease-in-out infinite;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-#startBannerModLoaderGui:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow:
-        0 0 28px rgba(34, 211, 238, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-}
-
-@keyframes neoAurora {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes neoTitleShine {
-    0% { background-position: 0% center; }
-    100% { background-position: 220% center; }
-}
-
-@keyframes neoUnderline {
-    0%, 100% { opacity: 0.55; transform: scaleX(0.7); }
-    50% { opacity: 1; transform: scaleX(1); }
-}
-
-@keyframes neoSheen {
-    0%, 55% { transform: translateX(-140%); }
-    85%, 100% { transform: translateX(140%); }
-}
-
-@keyframes neoBtnPress {
-    0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5); }
-    100% { box-shadow: 0 0 0 16px rgba(34, 211, 238, 0); }
-}
-
-@keyframes neoBannerPulse {
-    0%, 100% { box-shadow: 0 0 16px rgba(34, 211, 238, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
-    50% { box-shadow: 0 0 26px rgba(34, 211, 238, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
-}
-
-#MyConfig_section_0 {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 8px;
+#MyConfig .neo-nav-item {
+    position: relative;
+    display: flex;
     align-items: center;
-    margin: 0 !important;
-    padding: 0 !important;
-    animation: none !important;
+    gap: 10px;
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 11px;
+    background: transparent;
+    color: #3c434d;
+    font-family: var(--neo-font);
+    font-size: 14px;
+    font-weight: 560;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.16s ease, color 0.16s ease;
+}
+#MyConfig .neo-nav-item:hover {
+    background: rgba(255, 255, 255, 0.72);
+}
+#MyConfig .neo-nav-item:active {
+    transform: scale(0.994);
+}
+#MyConfig .neo-nav-item .neo-icon {
+    width: 18px;
+    height: 18px;
+    color: #667080;
+    transition: color 0.16s ease;
+}
+#MyConfig .neo-nav-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#MyConfig .neo-nav-item.neo-nav-active {
+    background: var(--neo-accent-soft);
+    color: #2356dc;
+    font-weight: 660;
+}
+#MyConfig .neo-nav-item.neo-nav-active .neo-icon {
+    color: var(--neo-accent);
+}
+#MyConfig .neo-tab-badge {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 19px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #e1e5ec;
+    color: #6d7580;
+    font-size: 10px;
+    font-weight: 650;
+    line-height: 1;
+}
+#MyConfig .neo-nav-active .neo-tab-badge {
+    background: #cdddfe;
+    color: #2457dd;
+}
+#MyConfig .neo-tab-badge[data-badge="log"] {
+    background: #ffe3e2;
+    color: #cb3b37;
+}
+#MyConfig .neo-nav-active .neo-tab-badge[data-badge="log"] {
+    background: #ffd1cf;
+    color: #b92f2c;
+}
+#MyConfig .neo-nav-sep {
+    height: 1px;
+    margin: 8px 8px;
+    background: rgba(20, 28, 45, 0.07);
 }
 
-#MyConfig_section_0 .config_var {
-    margin: 0 !important;
-    padding: 0 !important;
+#MyConfig .neo-side-foot {
+    margin-top: auto;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--neo-muted);
+    font-size: 10.5px;
+}
+#MyConfig .neo-side-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#MyConfig .neo-side-dot {
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: #28b56a;
+    box-shadow: 0 0 0 3px rgba(40, 181, 106, 0.12);
+}
+#MyConfig .neo-side-version {
+    flex: 0 0 auto;
+    color: #a1a8b1;
 }
 
-#MyConfig_section_0 .config_var:hover {
+/* ===== 右侧主区 ===== */
+
+#MyConfig .neo-main {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(680px 340px at 105% -8%, rgba(47, 107, 255, 0.07), transparent 65%),
+        radial-gradient(520px 300px at -8% 108%, rgba(255, 158, 108, 0.07), transparent 65%),
+        #fafbfc;
+}
+
+#MyConfig .neo-topbar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 28px 10px;
+}
+#MyConfig .neo-topbar-titles {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+#MyConfig .neo-topbar-title {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 740;
+    letter-spacing: -0.02em;
+    color: var(--neo-text);
+}
+#MyConfig .neo-topbar-subtitle {
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--neo-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#MyConfig .neo-topbar-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 2px;
+}
+#MyConfig .neo-topbar-action {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 6px;
+    width: auto !important;
+    min-width: max-content;
+    height: 34px;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e3e6eb;
+    box-shadow: 0 1px 2px rgba(20, 30, 55, 0.03);
+    white-space: nowrap;
+}
+#MyConfig .neo-topbar-action .neo-icon {
+    width: 16px;
+    height: 16px;
+    color: #6b7480;
+}
+#MyConfig .neo-topbar-action input[type="button"] {
+    all: unset;
+    display: inline-block !important;
+    width: auto !important;
+    cursor: pointer;
+    font-family: var(--neo-font) !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    color: #3d444d !important;
+    line-height: 1;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    white-space: nowrap !important;
+}
+#MyConfig .neo-topbar-close input[type="button"] {
+    color: #7b5a5a !important;
+}
+#MyConfig .neo-topbar-action:hover {
+    background: #f6f7fa;
+}
+#MyConfig .neo-topbar-action:active {
+    transform: scale(0.98);
+}
+
+#MyConfig .neo-main-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px 28px 34px;
+    scrollbar-width: thin;
+    scrollbar-color: #c7cdd5 transparent;
+    overscroll-behavior: contain;
+}
+#MyConfig .neo-main-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+#MyConfig .neo-main-scroll::-webkit-scrollbar-thumb {
+    background: #c7cdd5;
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+#MyConfig .neo-main-scroll::-webkit-scrollbar-track {
     background: transparent;
 }
 
-#MyConfig .neo-merged-away {
-    display: none !important;
+#MyConfig .neo-page {
+    display: none;
+    animation: neoPageIn 0.22s ease both;
+}
+#MyConfig .neo-page.neo-page-active {
+    display: block;
+}
+@keyframes neoPageIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.neo-toolbar-divider {
-    width: 1px;
-    height: 24px;
-    margin: 0 4px;
-    align-self: center;
-    background: rgba(125, 211, 252, 0.18);
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.12);
-}
+/* ===== 图标 ===== */
 
-#MyConfig_section_0 #MyConfig_SafeModeState_R_var {
-    display: inline-flex !important;
-    width: auto !important;
+#MyConfig .neo-icon {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin: 0 !important;
-    padding: 0 4px !important;
-    border-radius: 999px;
+    justify-content: center;
+    flex: 0 0 auto;
+    line-height: 0;
+}
+#MyConfig .neo-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-#MyConfig_section_0 #MyConfig_SafeModeState_R_var::before {
+/* ===== Mod 页 ===== */
+
+#MyConfig .neo-hero {
+    position: relative;
+    height: 166px;
+    margin-top: 4px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(112deg, #ffae6f 0%, #ff6f97 30%, #9668ff 63%, #3f86ff 100%);
+    box-shadow: 0 18px 34px rgba(84, 96, 190, 0.18);
+}
+#MyConfig .neo-hero::after {
     content: "";
-    flex: 0 0 auto;
-    width: 8px;
-    height: 8px;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(22, 26, 60, 0.16));
+    pointer-events: none;
+}
+#MyConfig .neo-hero-art {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+#MyConfig .neo-hero-blob {
+    position: absolute;
     border-radius: 50%;
-    background: #64748b;
-    box-shadow: 0 0 10px rgba(100, 116, 139, 0.65);
+    filter: blur(2px);
+    opacity: 0.9;
 }
-
-#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-on::before {
-    background: #4ade80;
-    box-shadow: 0 0 12px #4ade80;
+#MyConfig .neo-hero-blob-a {
+    width: 160px;
+    height: 160px;
+    right: 48px;
+    top: -78px;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 239, 200, 0.9), rgba(255, 185, 120, 0.15) 68%, transparent 72%);
 }
-
-#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-off::before {
-    background: #f87171;
-    box-shadow: 0 0 12px #f87171;
+#MyConfig .neo-hero-blob-b {
+    width: 250px;
+    height: 250px;
+    right: -70px;
+    bottom: -150px;
+    background: radial-gradient(circle at 40% 35%, rgba(194, 220, 255, 0.72), rgba(80, 130, 255, 0.1) 66%, transparent 72%);
 }
-
-#MyConfig_section_0 #MyConfig_SafeModeState_R_var.neo-status-auto::before {
-    background: #fbbf24;
-    box-shadow: 0 0 12px #fbbf24;
+#MyConfig .neo-hero-blob-c {
+    width: 120px;
+    height: 120px;
+    left: 32%;
+    bottom: -78px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
 }
-
-#MyConfig_section_0 #MyConfig_SafeModeState_R_field_label {
-    margin: 0 !important;
-    white-space: nowrap;
-}
-
-#MyConfig_section_0 #MyConfig_field_SafeModeState_R {
-    flex: 0 0 auto;
-    width: auto !important;
-    min-width: 138px;
-    max-width: 560px;
-    padding: 6px 12px !important;
-    font-size: 12px !important;
-    text-overflow: ellipsis;
-    border-radius: 999px !important;
-    font-weight: 650 !important;
-    text-align: center;
-}
-
-#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-on {
-    color: #bbf7d0 !important;
-    background: rgba(20, 83, 45, 0.45) !important;
-    border-color: rgba(74, 222, 128, 0.55) !important;
-    box-shadow: 0 0 18px rgba(74, 222, 128, 0.16), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
-}
-
-#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-off {
-    color: #fecaca !important;
-    background: rgba(127, 29, 29, 0.38) !important;
-    border-color: rgba(248, 113, 113, 0.5) !important;
-    box-shadow: 0 0 18px rgba(248, 113, 113, 0.14), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
-}
-
-#MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-auto {
-    color: #fde68a !important;
-    background: rgba(120, 53, 15, 0.38) !important;
-    border-color: rgba(251, 191, 36, 0.5) !important;
-    box-shadow: 0 0 18px rgba(251, 191, 36, 0.14), inset 0 1px 7px rgba(0, 0, 0, 0.35) !important;
-}
-
-.neo-subsection-title {
-    margin: 20px 0 6px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(125, 211, 252, 0.14);
-    color: var(--neo-muted);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.neo-add-row,
-.neo-remove-row {
+#MyConfig .neo-hero-copy {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 24px 28px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#MyConfig .neo-hero-kicker {
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.76);
+}
+#MyConfig .neo-hero-title {
+    margin-top: 5px;
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    text-shadow: 0 3px 16px rgba(40, 20, 80, 0.18);
+}
+#MyConfig .neo-hero-sub {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.82);
+}
+#MyConfig .neo-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 16px;
+}
+#MyConfig .neo-hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+#MyConfig .neo-hero-stat strong {
+    font-size: 20px;
+    line-height: 1.1;
+    font-weight: 760;
+    color: #fff;
+}
+#MyConfig .neo-hero-stat span {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 0.04em;
+}
+
+#MyConfig .neo-toolbar {
+    display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    align-items: flex-end;
-    margin: 4px 0 6px;
+    margin-top: 18px;
 }
-
-.neo-add-row #MyConfig_AddMod_I_var {
-    flex: 1 1 460px;
-    display: flex !important;
-    align-items: center;
-    gap: 8px;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.neo-add-row #MyConfig_AddMod_I_field_label {
-    margin: 0 !important;
-    white-space: normal;
-}
-
-.neo-add-row #MyConfig_field_AddMod_I {
-    flex: 1;
+#MyConfig .neo-toolbar-search {
+    flex: 1 1 220px;
     min-width: 180px;
-}
-
-.neo-add-row #MyConfig_AddMod_b_var,
-.neo-remove-row #MyConfig_RemoveMod_b_var {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.neo-remove-row {
-    align-items: center;
-    margin-top: 8px;
-}
-
-.neo-remove-row #MyConfig_RemoveMod_s_var {
-    flex: 1 1 320px;
-    display: flex !important;
+    display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 !important;
-    padding: 0 !important;
+    height: 40px;
+    padding: 0 13px;
+    border-radius: 11px;
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    box-shadow: 0 2px 7px rgba(20, 30, 55, 0.035);
+    transition: border-color 0.18s, box-shadow 0.18s;
 }
-
-.neo-remove-row #MyConfig_RemoveMod_s_field_label {
-    margin: 0 !important;
+#MyConfig .neo-toolbar-search:focus-within {
+    border-color: rgba(47, 107, 255, 0.4);
+    box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.08);
 }
-
-.neo-remove-row #MyConfig_field_RemoveMod_s {
+#MyConfig .neo-toolbar-search .neo-icon {
+    width: 16px;
+    height: 16px;
+    color: #98a0ab;
+}
+#MyConfig .neo-toolbar-search input {
     flex: 1;
-    min-width: 160px;
+    min-width: 0;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    outline: 0;
+    font-size: 13px !important;
+    color: var(--neo-text) !important;
+}
+#MyConfig .neo-toolbar-search input::placeholder {
+    color: #a4abb5;
 }
 
-#MyConfig_AddMod_R_var {
-    margin-top: 6px !important;
+#MyConfig .neo-chips {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 11px;
+    background: #eef1f5;
 }
-
-#MyConfig_field_AddMod_R {
-    width: 100% !important;
+#MyConfig .neo-chip {
+    height: 28px;
+    padding: 0 11px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7480;
+    font-family: var(--neo-font);
+    font-size: 12px;
+    font-weight: 560;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
 }
-
-#MyConfig_field_NowLoadedModeList_r {
-    min-height: 220px;
-    height: 30vh;
-    max-height: 420px;
+#MyConfig .neo-chip:hover {
+    color: #3d444d;
 }
-
-#MyConfig_field_NowSideLoadModeList_r {
-    min-height: 120px;
-    height: 16vh;
-    max-height: 240px;
+#MyConfig .neo-chip.neo-chip-active {
+    background: #fff;
+    color: #2457dd;
+    font-weight: 680;
+    box-shadow: 0 1px 4px rgba(20, 30, 55, 0.11);
 }
-
-#MyConfig .enable-order-component-host {
-    display: block !important;
-    padding: 12px 0 !important;
-    border-top: 1px solid rgba(125, 211, 252, 0.12);
+#MyConfig .neo-toolbar-spacer {
+    flex: 1 1 12px;
 }
-
-#MyConfig .enable-order-component-host:first-of-type {
-    padding-top: 0 !important;
-    border-top: none;
+#MyConfig .neo-pill-btn {
+    height: 38px;
+    padding: 0 16px;
+    border: 1px solid #dfe4ea;
+    border-radius: 999px;
+    background: #fff;
+    color: #38404a;
+    font-family: var(--neo-font);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 2px 7px rgba(20, 30, 55, 0.035);
+    transition: background 0.16s, border-color 0.16s, transform 0.1s;
 }
-
-#MyConfig .enable-order-component-title {
-    margin: 0 0 10px !important;
-    color: var(--neo-ink) !important;
-    font-size: 13.5px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.04em;
-    text-shadow: 0 0 16px rgba(34, 211, 238, 0.14);
+#MyConfig .neo-pill-btn:hover {
+    background: #f6f8fb;
 }
-
-#MyConfig .neo-order-enhanced .enable-order-component-enable-select-button,
-#MyConfig .neo-order-enhanced .enable-order-component-enable-disable-select-button,
-#MyConfig .neo-order-enhanced .enable-order-component-disable-select-button,
-#MyConfig .neo-order-enhanced .order-component-move-button,
-#MyConfig .enable-order-component-host.neo-order-enhanced > hr {
+#MyConfig .neo-pill-btn:active {
+    transform: scale(0.98);
+}
+#MyConfig .neo-pill-btn.neo-pill-primary {
+    border-color: transparent;
+    background: linear-gradient(135deg, #3b77ff, #245fe4);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(47, 107, 255, 0.28);
+}
+#MyConfig .neo-pill-btn.neo-pill-primary:hover {
+    background: linear-gradient(135deg, #4a84ff, #2c68f0);
+}
+#MyConfig .neo-pill-btn.neo-pill-active {
+    border-color: rgba(47, 107, 255, 0.4);
+    background: #eaf0ff;
+    color: #2457dd;
+}
+#MyConfig .neo-pill-btn[hidden] {
     display: none !important;
 }
 
-#MyConfig .neo-order-status {
-    margin: 8px 0 2px;
-    padding: 6px 10px;
-    color: #bbf7d0;
-    background: rgba(20, 83, 45, 0.35);
-    border: 1px solid rgba(74, 222, 128, 0.4);
-    border-radius: 8px;
-    font-size: 12px;
+/* 添加 Mod 面板 */
+
+#MyConfig .neo-add-panel {
+    margin-top: 12px;
+    padding: 16px 18px 18px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    box-shadow: var(--neo-shadow);
+}
+#MyConfig .neo-add-panel[hidden] {
+    display: none !important;
+}
+#MyConfig .neo-add-panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+#MyConfig .neo-add-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 12px;
+    align-items: end;
+}
+#MyConfig .neo-add-grid .neo-add-field {
+    margin: 0 !important;
+}
+#MyConfig .neo-add-field:nth-child(3),
+#MyConfig .neo-add-field:nth-child(6) {
+    grid-column: 1 / -1;
+}
+#MyConfig .neo-add-field .field_label {
+    display: flex !important;
+    align-items: center;
+    margin: 0 0 6px !important;
+    padding: 0 !important;
+    font-size: 11.5px !important;
+    font-weight: 560 !important;
+    color: #77808c !important;
     line-height: 1.4;
 }
-
-#MyConfig .neo-order-status-error {
-    color: #fecaca;
-    background: rgba(127, 29, 29, 0.35);
-    border-color: rgba(248, 113, 113, 0.45);
+#MyConfig .neo-add-field input[type="file"] {
+    width: 100%;
+    padding: 5px 8px !important;
+    border: 1px solid #e1e5eb !important;
+    border-radius: 10px !important;
+    background: #f8f9fb !important;
+    font-size: 12px !important;
+    color: #5e6671 !important;
+    cursor: pointer;
+}
+#MyConfig .neo-add-field input[type="file"]::file-selector-button {
+    height: 30px;
+    margin-right: 10px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #2f6bff;
+    color: #fff;
+    font-family: var(--neo-font);
+    font-size: 12px;
+    font-weight: 620;
+    cursor: pointer;
+}
+#MyConfig .neo-add-field input[type="button"] {
+    height: 34px;
+    padding: 0 14px;
+    border: 1px solid #dfe4ea;
+    border-radius: 9px;
+    background: #fff;
+    color: #3c434d;
+    font-family: var(--neo-font);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#MyConfig .neo-add-field input[type="button"]:hover {
+    background: #f6f8fb;
+}
+#MyConfig #MyConfig_field_AddMod_b {
+    border-color: #2f6bff !important;
+    background: #2f6bff !important;
+    color: #fff !important;
+}
+#MyConfig #MyConfig_field_AddMod_b:hover {
+    background: #2459df !important;
+    border-color: #2459df !important;
+}
+#MyConfig #MyConfig_field_RemoveMod_b {
+    color: #b4544f !important;
+}
+#MyConfig .neo-add-field select,
+#MyConfig .neo-add-field textarea,
+#MyConfig .neo-add-field input[type="text"] {
+    width: 100%;
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid #e1e5eb !important;
+    border-radius: 9px !important;
+    background: #fbfcfe !important;
+    font-family: var(--neo-font);
+    font-size: 12px !important;
+    color: #3c434d !important;
+}
+#MyConfig .neo-add-field textarea {
+    min-height: 56px;
+    padding: 9px 12px;
+    resize: vertical;
+    line-height: 1.5;
+}
+#MyConfig .neo-add-close {
+    flex: 0 0 auto;
 }
 
-#MyConfig .enable-order-component-select,
-#MyConfig .order-component-select {
-    display: flex !important;
+/* 通用圆按钮 */
+
+#MyConfig .neo-round-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid #e2e6ec;
+    border-radius: 50%;
+    background: #fff;
+    color: #5b6470;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(20, 30, 55, 0.04);
+}
+#MyConfig .neo-round-btn .neo-icon {
+    width: 16px;
+    height: 16px;
+}
+#MyConfig .neo-round-btn:hover {
+    background: #f5f7fa;
+}
+
+/* Mod 列表 */
+
+#MyConfig .neo-list-card {
+    margin-top: 14px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    box-shadow: var(--neo-shadow);
+    overflow: hidden;
+}
+#MyConfig .neo-list-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px 8px;
+}
+#MyConfig .neo-list-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--neo-text);
+}
+#MyConfig .neo-list-count {
+    font-size: 11.5px;
+    color: var(--neo-muted);
+}
+#MyConfig .neo-mod-rows {
+    display: flex;
     flex-direction: column;
-    gap: 8px;
-    width: 100% !important;
-    border: none !important;
-    background: transparent !important;
-    font-size: 14px !important;
 }
-
-#MyConfig .neo-order-list-empty {
+#MyConfig .neo-mod-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 62px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-top: 1px solid #f0f2f5;
+    transition: background 0.15s ease;
+}
+#MyConfig .neo-mod-row:first-child {
+    border-top-color: transparent;
+}
+#MyConfig .neo-mod-row:hover {
+    background: #f8f9fc;
+}
+#MyConfig .neo-mod-row:focus-visible {
+    outline: 2px solid rgba(47, 107, 255, 0.35);
+    outline-offset: -2px;
+}
+#MyConfig .neo-mod-row[hidden] {
     display: none !important;
 }
-
-#MyConfig .neo-order-group-label {
-    margin: 14px 0 6px;
-    color: var(--neo-muted);
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-#MyConfig .neo-mod-item {
-    display: flex !important;
+#MyConfig .neo-mod-avatar {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 12px;
+    display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px !important;
-    color: var(--neo-ink) !important;
-    background: rgba(15, 23, 42, 0.55) !important;
-    border: 1px solid rgba(71, 85, 105, 0.5);
-    border-radius: 10px;
-    transition:
-        border-color 0.18s ease,
-        background 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 760;
+    color: #30425f;
+    background: #e8eef8;
+    letter-spacing: -0.02em;
 }
-
-#MyConfig .neo-mod-item:hover {
-    background: rgba(30, 41, 59, 0.65) !important;
-    border-color: rgba(34, 211, 238, 0.45);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-}
-
-#MyConfig .neo-mod-item[style*="pink"] {
-    color: var(--neo-ink) !important;
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.1)) !important;
-    border-color: rgba(34, 211, 238, 0.6) !important;
-}
-
-#MyConfig .neo-mod-item.neo-dragging {
-    opacity: 0.55;
-    transform: scale(0.99);
-    border-style: dashed;
-}
-
-#MyConfig .neo-mod-item.neo-drop-before {
-    box-shadow: inset 0 2px 0 #22d3ee, 0 0 18px rgba(34, 211, 238, 0.16);
-}
-
-#MyConfig .neo-mod-item.neo-drop-after {
-    box-shadow: inset 0 -2px 0 #22d3ee, 0 0 18px rgba(34, 211, 238, 0.16);
-}
-
-#MyConfig .neo-drag-handle {
-    flex: 0 0 auto;
-    width: 22px;
-    color: #64748b;
-    font-size: 16px;
-    line-height: 1;
-    letter-spacing: -2px;
-    text-align: center;
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
-}
-
-#MyConfig .neo-drag-handle:hover {
-    color: #22d3ee;
-    text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
-}
-
-#MyConfig .neo-drag-handle:active {
-    cursor: grabbing;
-}
+#MyConfig .neo-tone-0 { background: linear-gradient(145deg, #e6edff, #d5e1ff); color: #3552a3; }
+#MyConfig .neo-tone-1 { background: linear-gradient(145deg, #ffe9df, #ffe0cc); color: #9a5b2c; }
+#MyConfig .neo-tone-2 { background: linear-gradient(145deg, #e3f4ea, #d3eddc); color: #2f6f4c; }
+#MyConfig .neo-tone-3 { background: linear-gradient(145deg, #f1e7ff, #e7d9ff); color: #6a4a9f; }
+#MyConfig .neo-tone-4 { background: linear-gradient(145deg, #ffe7f0, #ffd9e6); color: #9b4464; }
+#MyConfig .neo-tone-5 { background: linear-gradient(145deg, #e5f1f7, #d6e8f1); color: #35647a; }
 
 #MyConfig .neo-mod-main {
     flex: 1 1 auto;
     min-width: 0;
 }
-
-#MyConfig .neo-mod-name {
-    overflow: hidden;
-    color: #e2e8f0;
-    font-size: 13.5px;
-    font-weight: 650;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#MyConfig .neo-mod-meta {
-    margin-top: 2px;
-    overflow: hidden;
-    color: var(--neo-muted);
-    font-size: 11.5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#MyConfig .neo-mod-actions {
+#MyConfig .neo-mod-name-line {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    min-width: 0;
+}
+#MyConfig .neo-mod-name {
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--neo-text);
+    line-height: 1.35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+#MyConfig .neo-mod-meta {
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: var(--neo-muted);
+    line-height: 1.35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#MyConfig .neo-tag {
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 5px;
+    font-size: 9.5px;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+}
+#MyConfig .neo-tag-side {
+    color: #2157d8;
+    background: #e8efff;
+}
+#MyConfig .neo-tag-builtin {
+    color: #7a828d;
+    background: #f0f2f5;
+}
+#MyConfig .neo-mod-side {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#MyConfig .neo-mod-side > .neo-icon {
+    width: 15px;
+    height: 15px;
+    color: #b3bac3;
+}
+#MyConfig .neo-list-drag {
+    width: 16px;
+    flex: 0 0 16px;
+    text-align: center;
+    color: #9fa8b4;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+#MyConfig .neo-list-drag:hover {
+    color: #8f98a5;
+}
+#MyConfig .neo-list-drag:active {
+    cursor: grabbing;
+}
+#MyConfig .neo-list-drag-empty {
+    visibility: hidden;
+    pointer-events: none;
+}
+#MyConfig .neo-mod-row.neo-list-dragging {
+    background: #eef3ff;
+    opacity: 0.72;
+}
+#MyConfig .neo-mod-row.neo-drop-before {
+    box-shadow: inset 0 2px 0 #2f6bff;
+}
+#MyConfig .neo-mod-row.neo-drop-after {
+    box-shadow: inset 0 -2px 0 #2f6bff;
+}
+#MyConfig .neo-mod-delete {
+    color: #a3aab4;
+}
+#MyConfig .neo-mod-delete .neo-icon {
+    width: 14px;
+    height: 14px;
+}
+#MyConfig .neo-mod-delete:hover {
+    color: #d94848;
+    background: #fff0f0;
+}
+#MyConfig .neo-delete-wide {
+    height: 32px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 9px;
+    background: #fff1f1;
+    color: #c84545;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-}
-
-#MyConfig .neo-icon-btn {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 30px !important;
-    height: 28px;
-    min-width: 30px !important;
-    padding: 0 !important;
-    color: #cbd5e1 !important;
-    background: rgba(15, 23, 42, 0.7) !important;
-    border: 1px solid rgba(71, 85, 105, 0.6) !important;
-    border-radius: 8px !important;
-    font-size: 11px !important;
-    line-height: 1;
-    cursor: pointer;
-    transition:
-        color 0.18s ease,
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-}
-
-#MyConfig .neo-icon-btn:hover:not(:disabled) {
-    color: #a5f3fc !important;
-    background: rgba(30, 41, 59, 0.9) !important;
-    border-color: rgba(34, 211, 238, 0.6) !important;
-    box-shadow: 0 0 14px rgba(34, 211, 238, 0.15);
-    transform: translateY(-1px);
-}
-
-#MyConfig .neo-icon-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-#MyConfig .neo-text-btn {
-    min-width: 50px !important;
-    padding: 6px 10px !important;
-    border-radius: 8px !important;
-    font-size: 12px !important;
+    font-family: var(--neo-font);
+    font-size: 12px;
     font-weight: 650;
     cursor: pointer;
-    transition:
-        color 0.18s ease,
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+    transition: background 0.15s;
+}
+#MyConfig .neo-delete-wide .neo-icon {
+    width: 14px;
+    height: 14px;
+}
+#MyConfig .neo-delete-wide:hover {
+    background: #ffe4e4;
+}
+#MyConfig .neo-inline-lock {
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 7px;
+    background: #f2f4f6;
+    color: #939aa4;
+    font-size: 10.5px;
+    font-weight: 560;
+    display: inline-flex;
+    align-items: center;
 }
 
-#MyConfig .neo-text-btn.neo-danger {
-    color: #fecaca !important;
-    background: rgba(127, 29, 29, 0.35) !important;
-    border-color: rgba(248, 113, 113, 0.4) !important;
+/* iOS 风格开关 */
+
+#MyConfig .neo-switch {
+    position: relative;
+    width: 46px;
+    height: 28px;
+    flex: 0 0 46px;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px;
+    background: #d8dde4 !important;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    box-shadow: inset 0 0 0 1px rgba(20, 28, 45, 0.04);
+}
+#MyConfig .neo-switch .neo-switch-knob {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(20, 30, 55, 0.2);
+    transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+#MyConfig .neo-switch.neo-switch-on {
+    background: #2f6bff !important;
+}
+#MyConfig .neo-switch.neo-switch-on .neo-switch-knob {
+    transform: translateX(18px);
+}
+#MyConfig .neo-switch:focus-visible {
+    outline: 3px solid rgba(47, 107, 255, 0.25);
+    outline-offset: 2px;
 }
 
-#MyConfig .neo-text-btn.neo-danger:hover {
-    border-color: rgba(248, 113, 113, 0.8) !important;
-    box-shadow: 0 0 16px rgba(248, 113, 113, 0.2);
-    transform: translateY(-1px);
+#MyConfig .neo-empty {
+    padding: 38px 20px;
+    text-align: center;
+    color: var(--neo-muted);
+    font-size: 12.5px;
 }
-
-#MyConfig .neo-text-btn.neo-success {
-    color: #bbf7d0 !important;
-    background: rgba(20, 83, 45, 0.4) !important;
-    border-color: rgba(74, 222, 128, 0.4) !important;
-}
-
-#MyConfig .neo-text-btn.neo-success:hover {
-    border-color: rgba(74, 222, 128, 0.8) !important;
-    box-shadow: 0 0 16px rgba(74, 222, 128, 0.2);
-    transform: translateY(-1px);
-}
-
-@media (max-width: 720px) {
-    #MyConfig .neo-mod-item {
-        gap: 8px;
-        padding: 9px 10px !important;
-    }
-    #MyConfig .neo-icon-btn {
-        width: 28px !important;
-        min-width: 28px !important;
-    }
-    #MyConfig .neo-text-btn {
-        min-width: 44px !important;
-        padding: 6px 8px !important;
-    }
-}
-
-#MyConfig_section_4 .config_var {
+#MyConfig .neo-empty[hidden] {
     display: none !important;
 }
-
-#MyConfig .neo-readme-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 0 0 10px;
+#MyConfig .neo-list-note {
+    padding: 11px 20px 14px;
+    border-top: 1px solid #f2f4f7;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #9aa1ab;
 }
 
-#MyConfig .neo-readme-heading {
-    color: #fde047 !important;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-}
+/* 排序面板 */
 
-#MyConfig .neo-readme-host {
-    display: flex;
-    gap: 16px;
-    height: min(57vh, 580px);
-    min-height: 340px;
+#MyConfig .neo-order-panel {
+    margin-top: 14px;
+    padding: 16px 18px 18px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    box-shadow: var(--neo-shadow);
 }
-
-#MyConfig .neo-readme-sidebar {
-    display: flex;
-    flex: 0 0 260px;
-    flex-direction: column;
-    gap: 10px;
-    min-height: 0;
+#MyConfig .neo-order-panel[hidden] {
+    display: none !important;
 }
-
-#MyConfig .neo-readme-search {
-    width: 100% !important;
-}
-
-#MyConfig .neo-readme-list {
-    flex: 1;
-    min-height: 0;
-    overflow: auto;
-    padding: 6px;
-    background: rgba(2, 6, 23, 0.4);
-    border: 1px solid rgba(71, 85, 105, 0.45);
-    border-radius: 12px;
-}
-
-#MyConfig .neo-readme-item {
-    display: block;
-    overflow-wrap: anywhere;
-    width: 100%;
-    min-width: 0 !important;
-    margin: 0 0 4px;
-    padding: 9px 12px !important;
-    color: var(--neo-muted) !important;
-    background: transparent !important;
-    border: 1px solid transparent !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.35;
-    text-align: left;
-    cursor: pointer;
-}
-
-#MyConfig .neo-readme-item:hover {
-    color: #e2e8f0 !important;
-    background: rgba(148, 163, 184, 0.08) !important;
-    border-color: rgba(148, 163, 184, 0.2) !important;
-}
-
-#MyConfig .neo-readme-item.neo-readme-item-active {
-    color: #e0f2fe !important;
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(167, 139, 250, 0.08)) !important;
-    border-color: rgba(34, 211, 238, 0.5) !important;
-    box-shadow: inset 3px 0 0 #22d3ee !important;
-}
-
-#MyConfig .neo-readme-content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-}
-
-#MyConfig .neo-readme-head {
+#MyConfig .neo-order-panel-head {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(125, 211, 252, 0.15);
+    gap: 14px;
+    margin-bottom: 12px;
+}
+#MyConfig .neo-order-panel .section_header_holder {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+}
+#MyConfig .neo-order-panel .section_header {
+    display: none !important;
+}
+#MyConfig .neo-order-panel > .section_header_holder > .config_var:first-child {
+    display: none !important;
+}
+#MyConfig .enable-order-component-host {
+    display: block !important;
+    margin: 0 0 16px !important;
+    padding: 0 !important;
+}
+#MyConfig .enable-order-component-host:last-child {
+    margin-bottom: 0 !important;
+}
+#MyConfig .enable-order-component-title {
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    font-weight: 600 !important;
+    color: #8b929c !important;
+    letter-spacing: 0.02em;
+}
+#MyConfig .enable-order-component-select {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 13px !important;
+    min-height: 0 !important;
+}
+#MyConfig .enable-order-component-enable-select-button,
+#MyConfig .enable-order-component-enable-disable-select-button,
+#MyConfig .enable-order-component-disable-select-button,
+#MyConfig .enable-order-component-host hr {
+    display: none !important;
+}
+#MyConfig .neo-order-group-label {
+    margin: 10px 0 4px;
+    font-size: 10.5px;
+    font-weight: 620;
+    color: #a0a7b1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+#MyConfig .neo-order-list-empty {
+    display: none !important;
+}
+#MyConfig .neo-mod-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    background: transparent !important;
+    transition: background 0.15s ease;
+}
+#MyConfig .neo-mod-item:hover {
+    background: #f7f9fc;
+}
+#MyConfig .neo-mod-item.neo-dragging {
+    background: #eef3ff;
+    opacity: 0.9;
+}
+#MyConfig .neo-mod-item.neo-drop-before {
+    box-shadow: 0 -2px 0 #2f6bff;
+}
+#MyConfig .neo-mod-item.neo-drop-after {
+    box-shadow: 0 2px 0 #2f6bff;
+}
+#MyConfig .neo-drag-handle {
+    width: 17px;
+    flex: 0 0 17px;
+    color: #c4cad2;
+    font-size: 11px;
+    line-height: 1;
+    cursor: grab;
+    user-select: none;
+    overflow: hidden;
+}
+#MyConfig .neo-drag-handle:active {
+    cursor: grabbing;
+}
+#MyConfig .neo-mod-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#MyConfig .neo-icon-btn {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: #f2f4f7;
+    color: #6f7884;
+    font-size: 9px;
+    line-height: 1;
+    cursor: pointer;
+}
+#MyConfig .neo-icon-btn:hover {
+    background: #e9edf3;
+}
+#MyConfig .neo-icon-btn:disabled {
+    opacity: 0.34;
+    cursor: default;
+}
+#MyConfig .neo-toggle {
+    position: relative !important;
+    width: 44px !important;
+    height: 26px !important;
+    flex: 0 0 44px;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: #d8dde4 !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+#MyConfig .neo-toggle::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(20, 30, 55, 0.2);
+    transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+#MyConfig .neo-toggle.neo-danger {
+    background: #2f6bff !important;
+}
+#MyConfig .neo-toggle.neo-danger::after {
+    transform: translateX(18px);
+}
+#MyConfig .neo-toggle.neo-success {
+    background: #d8dde4 !important;
+}
+#MyConfig .neo-order-status {
+    margin: 6px 0 0;
+    font-size: 11px;
+    color: #2f7a55;
+}
+#MyConfig .neo-order-status-error {
+    color: #c0392b;
+}
+#MyConfig .neo-config-loading {
+    padding: 22px;
+    font-size: 12px;
+    color: var(--neo-muted);
+    text-align: center;
 }
 
-#MyConfig .neo-readme-titlewrap {
+/* ===== 详情页 ===== */
+
+#MyConfig .neo-mod-detail {
+    display: none;
+    padding-top: 4px;
+}
+#MyConfig .neo-page[data-neo-page="mods"][data-neo-view="detail"] .neo-page-listview {
+    display: none !important;
+}
+#MyConfig .neo-page[data-neo-page="mods"][data-neo-view="detail"] .neo-mod-detail {
+    display: block;
+}
+#MyConfig .neo-detail-bar {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 0 0 14px;
+}
+#MyConfig .neo-detail-heading {
+    flex: 1;
     min-width: 0;
 }
-
-#MyConfig .neo-readme-title {
-    overflow-wrap: anywhere;
-    color: #d9f99d !important;
-    font-size: 22px !important;
-    font-weight: 800;
+#MyConfig .neo-detail-name {
+    font-size: 21px;
     line-height: 1.25;
-    text-shadow: 0 0 18px rgba(217, 249, 157, 0.18);
+    font-weight: 740;
+    letter-spacing: -0.02em;
+    color: var(--neo-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
-#MyConfig .neo-readme-version {
+#MyConfig .neo-detail-meta {
     margin-top: 4px;
+    font-size: 11.5px;
     color: var(--neo-muted);
-    font-size: 12px;
 }
-
-#MyConfig .neo-readme-version span {
-    color: #fca5a5;
-    font-weight: 700;
-}
-
-#MyConfig .neo-readme-back {
+#MyConfig .neo-detail-actions {
     flex: 0 0 auto;
-    min-width: 116px !important;
-    padding: 8px 14px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-
-#MyConfig .neo-readme-body {
-    flex: 1;
-    min-height: 0;
-    overflow: auto;
-    padding: 14px 4px 20px;
-    color: #cbd5e1;
+#MyConfig .neo-detail-card {
+    padding: 20px 24px 24px;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    box-shadow: var(--neo-shadow);
+}
+#MyConfig .neo-detail-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f2f5;
+}
+#MyConfig .neo-detail-card-title {
     font-size: 13px;
-    line-height: 1.7;
+    font-weight: 700;
+    color: var(--neo-text);
 }
-
+#MyConfig .neo-detail-badge {
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 6px;
+    background: #eef2f8;
+    color: #7c8591;
+    font-size: 10px;
+    font-weight: 620;
+    display: inline-flex;
+    align-items: center;
+}
+#MyConfig .neo-detail-badge[hidden] {
+    display: none !important;
+}
+#MyConfig .neo-detail-badge-off {
+    background: #fff0ef;
+    color: #c53c37;
+}
+#MyConfig .neo-readme-body {
+    padding-top: 14px;
+    font-size: 13.5px;
+    line-height: 1.78;
+    color: #3a414b;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
 #MyConfig .neo-readme-body h1,
 #MyConfig .neo-readme-body h2,
 #MyConfig .neo-readme-body h3,
-#MyConfig .neo-readme-body h4,
-#MyConfig .neo-readme-body h5,
-#MyConfig .neo-readme-body h6 {
-    margin: 16px 0 8px;
-    color: #fde047;
+#MyConfig .neo-readme-body h4 {
+    margin: 18px 0 8px;
+    color: #191c21;
     line-height: 1.3;
 }
-
-#MyConfig .neo-readme-body h1 {
-    margin-top: 6px;
-    font-size: 22px;
-}
-
-#MyConfig .neo-readme-body h2 {
-    font-size: 18px;
-}
-
-#MyConfig .neo-readme-body h3 {
-    font-size: 15px;
-}
-
-#MyConfig .neo-readme-body p {
-    margin: 0 0 10px;
-}
-
+#MyConfig .neo-readme-body h1 { font-size: 22px; font-weight: 760; }
+#MyConfig .neo-readme-body h2 { font-size: 18px; font-weight: 740; }
+#MyConfig .neo-readme-body h3 { font-size: 15.5px; font-weight: 700; }
+#MyConfig .neo-readme-body h4 { font-size: 14px; font-weight: 700; }
+#MyConfig .neo-readme-body p { margin: 8px 0; }
 #MyConfig .neo-readme-body ul,
 #MyConfig .neo-readme-body ol {
-    margin: 0 0 10px;
-    padding-left: 1.5em;
+    margin: 8px 0;
+    padding-left: 22px;
 }
-
-#MyConfig .neo-readme-body li {
-    margin: 2px 0;
-}
-
+#MyConfig .neo-readme-body li { margin: 4px 0; }
 #MyConfig .neo-readme-body code {
-    padding: 1px 5px;
-    color: #a5f3fc;
-    background: rgba(2, 6, 23, 0.75);
-    border-radius: 4px;
-    font-family: "Cascadia Code", "Consolas", monospace;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: #f2f4f7;
+    color: #49515d;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 0.92em;
 }
-
 #MyConfig .neo-readme-body pre {
     margin: 10px 0;
-    padding: 12px;
-    overflow: auto;
-    background: rgba(2, 6, 23, 0.7);
-    border: 1px solid rgba(71, 85, 105, 0.45);
+    padding: 12px 14px;
     border-radius: 10px;
+    background: #f5f7fa;
+    border: 1px solid #e8ebef;
+    overflow: auto;
+    white-space: pre-wrap;
 }
-
 #MyConfig .neo-readme-body pre code {
     padding: 0;
     background: transparent;
 }
-
 #MyConfig .neo-readme-body blockquote {
     margin: 10px 0;
-    padding: 8px 12px;
-    color: #cbd5e1;
-    background: rgba(15, 23, 42, 0.55);
-    border-left: 3px solid #22d3ee;
-    border-radius: 0 8px 8px 0;
+    padding: 2px 0 2px 12px;
+    border-left: 3px solid #cfd9ea;
+    color: #6a7480;
 }
-
-#MyConfig .neo-readme-body a {
-    color: #67e8f9;
-    text-decoration: none;
-    border-bottom: 1px dotted rgba(103, 232, 249, 0.5);
-}
-
-#MyConfig .neo-readme-body a:hover {
-    color: #a5f3fc;
-    border-bottom-color: #a5f3fc;
-}
-
 #MyConfig .neo-readme-body img {
     max-width: 100%;
     height: auto;
-    margin: 6px 0;
-    border-radius: 8px;
+    border-radius: 10px;
+    margin: 8px 0;
 }
-
+#MyConfig .neo-readme-body a {
+    color: #2f6bff;
+    text-decoration: none;
+}
+#MyConfig .neo-readme-body a:hover {
+    text-decoration: underline;
+}
 #MyConfig .neo-readme-body hr {
-    margin: 14px 0;
     border: 0;
-    border-top: 1px solid rgba(125, 211, 252, 0.18);
+    height: 1px;
+    background: #eef1f5;
+    margin: 16px 0;
 }
-
+#MyConfig .neo-readme-body table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 12.5px;
+}
+#MyConfig .neo-readme-body th,
+#MyConfig .neo-readme-body td {
+    border: 1px solid #e6e9ee;
+    padding: 6px 9px;
+}
 #MyConfig .neo-readme-loading,
-#MyConfig .neo-readme-empty {
-    padding: 10px 0;
-    color: var(--neo-muted);
-}
-
+#MyConfig .neo-readme-empty,
 #MyConfig .neo-readme-error {
-    padding: 10px 0;
-    color: #fecaca;
-}
-
-@media (max-width: 720px) {
-    #MyConfig .neo-readme-host {
-        flex-direction: column;
-        height: auto;
-        min-height: 0;
-    }
-    #MyConfig .neo-readme-sidebar {
-        flex: 0 0 auto;
-    }
-    #MyConfig .neo-readme-list {
-        max-height: 180px;
-    }
-    #MyConfig .neo-readme-content {
-        min-height: 320px;
-    }
-}
-
-#MyConfig .neo-config-loading {
-    padding: 16px;
+    padding: 34px 10px;
+    text-align: center;
     color: var(--neo-muted);
-    font-size: 13px;
+    font-size: 12.5px;
+    line-height: 1.7;
+}
+#MyConfig .neo-readme-error {
+    color: #c23b35;
+}
+#MyConfig .neo-detail-json {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e6e9ee;
+}
+#MyConfig .neo-detail-json summary {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: #5c6470;
+    user-select: none;
+}
+#MyConfig .neo-detail-json pre {
+    margin: 10px 0 0;
+    max-height: 300px;
+    overflow: auto;
+    font-family: Consolas, "Cascadia Code", monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #4b545f;
+    white-space: pre-wrap;
 }
 
-#MyConfig .neo-config-loading-error {
-    color: #fecaca;
-}
+/* ===== 日志页 ===== */
 
-#neo-tabbar {
-    position: sticky;
-    top: 0;
-    z-index: 30;
+#MyConfig .neo-group-head {
     display: flex;
-    gap: 8px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 4px 2px 10px;
+}
+#MyConfig .neo-group-head-spaced {
+    margin-top: 22px;
+}
+#MyConfig .neo-group-title {
+    font-size: 15px;
+    font-weight: 720;
+    color: var(--neo-text);
+}
+#MyConfig .neo-group-desc {
+    margin-top: 4px;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--neo-muted);
+}
+
+#MyConfig #MyConfig_section_6,
+#MyConfig #MyConfig_section_7 {
+    margin: 0 !important;
+    padding: 16px 18px !important;
+    border: 1px solid #e4e7ec !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    box-shadow: var(--neo-shadow);
+}
+#MyConfig #MyConfig_section_6 .section_header,
+#MyConfig #MyConfig_section_7 .section_header {
+    display: none !important;
+}
+#MyConfig #MyConfig_section_6 > .config_var:first-child,
+#MyConfig #MyConfig_section_7 > .config_var:first-child {
+    display: none !important;
+}
+#MyConfig #MyConfig_section_6 .config_var.d-inline {
+    display: inline-flex !important;
     align-items: center;
-    margin: 4px -4px 14px;
-    padding: 8px 4px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    background: rgba(9, 14, 28, 0.96);
-    border-bottom: 1px solid rgba(125, 211, 252, 0.1);
-    backdrop-filter: blur(12px);
+    gap: 6px;
+    margin: 0 8px 8px 0 !important;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #f3f5f8;
+    border: 1px solid #e7eaee;
+}
+#MyConfig #MyConfig_section_6 .config_var.d-inline .field_label,
+#MyConfig #MyConfig_section_6 .config_var.d-inline label {
+    margin: 0 !important;
+    font-size: 11.5px !important;
+    color: #5c6470 !important;
+    font-weight: 500 !important;
+}
+#MyConfig #MyConfig_section_6 .config_var.d-inline input[type="checkbox"] {
+    margin: 0 !important;
+    width: 15px;
+    height: 15px;
+    accent-color: var(--neo-accent);
+}
+#MyConfig #MyConfig_section_6 .config_var.d-inline input[type="button"] {
+    height: 30px;
+    padding: 0 11px;
+    border-radius: 8px;
+    border: 1px solid #dfe4ea;
+    background: #fff;
+    color: #3c434d;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#MyConfig #MyConfig_section_6 .config_var.d-inline input[type="button"]:hover {
+    background: #f6f8fb;
+}
+#MyConfig #MyConfig_LoadLog_r_var {
+    margin-top: 4px !important;
+}
+#MyConfig #MyConfig_LoadLog_r_var > .field_label {
+    display: none !important;
+}
+#MyConfig #idLoadLogHtml {
+    max-height: 46vh;
+    min-height: 180px;
+    overflow: auto;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e6e9ee;
+    background: #f7f8fa;
+    font-family: "Cascadia Code", Consolas, "SFMono-Regular", monospace !important;
+    font-size: 11px !important;
+    line-height: 1.65;
+    color: #5d6673;
+    scrollbar-width: thin;
+    scrollbar-color: #c7cdd5 transparent;
+}
+#MyConfig #idLoadLogHtml > div {
+    padding: 1px 0;
+    color: #5d6673 !important;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+#MyConfig #idLoadLogHtml > div:first-child {
+    color: #242a31 !important;
+    font-weight: 650;
+    padding-bottom: 6px;
+}
+#MyConfig #idLoadLogHtml > div[style*="red"],
+#MyConfig #idLoadLogHtml > div[style*="salmon"] {
+    color: #cf3a34 !important;
+}
+#MyConfig #idLoadLogHtml > div[style*="orange"],
+#MyConfig #idLoadLogHtml > div[style*="yellow"] {
+    color: #a86600 !important;
+}
+#MyConfig #idLoadLogHtml > div[style*="green"] {
+    color: #2f7a55 !important;
+}
+#MyConfig #MyConfig_section_7 .config_var.d-inline {
+    display: inline-flex !important;
+    margin: 0 8px 0 0 !important;
+}
+#MyConfig #MyConfig_section_7 input[type="button"] {
+    height: 34px;
+    padding: 0 13px;
+    border-radius: 9px;
+    border: 1px solid #dfe4ea;
+    background: #fff;
+    color: #3c434d;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#MyConfig #MyConfig_section_7 input[type="button"]:hover {
+    background: #f6f8fb;
+}
+#MyConfig #MyConfig_section_7 input[type="button"][value*="2"] {
+    color: #8b929c;
 }
 
-#neo-tabbar::-webkit-scrollbar {
-    display: none;
-}
+/* ===== 设置 / 主题页 ===== */
 
-.neo-tab {
+#MyConfig #MyConfig_section_8,
+#MyConfig #MyConfig_section_10 {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+#MyConfig .neo-settings-section .section_header,
+#MyConfig .neo-lantern-section .section_header {
+    display: none !important;
+}
+#MyConfig .neo-settings-intro {
+    margin: 2px 2px 12px;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--neo-muted);
+}
+#MyConfig .neo-settings-group {
+    margin: 0 0 12px !important;
+    padding: 15px 18px 16px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid #e4e7ec;
+    box-shadow: 0 6px 18px rgba(20, 30, 55, 0.035);
+}
+#MyConfig .neo-settings-group[hidden] {
+    display: none !important;
+}
+#MyConfig .neo-settings-group-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--neo-text);
+    line-height: 1.35;
+}
+#MyConfig .neo-settings-group-desc {
+    margin: 4px 0 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--neo-muted);
+}
+#MyConfig .neo-settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 38px;
+    padding: 9px 0;
+    border-top: 1px solid #f1f3f6;
+}
+#MyConfig .neo-settings-row:first-of-type {
+    margin-top: 8px;
+}
+#MyConfig .neo-settings-row[hidden] {
+    display: none !important;
+}
+#MyConfig .neo-settings-label {
+    font-size: 13px;
+    color: #3a414b;
+    line-height: 1.4;
+}
+#MyConfig .neo-settings-value {
+    font-size: 12px;
+    color: #8a919b;
+    text-align: right;
     flex: 0 0 auto;
+    font-variant-numeric: tabular-nums;
+}
+#MyConfig .neo-settings-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 11px;
+}
+#MyConfig .neo-settings-actions.neo-ui-mode-actions {
+    margin-top: 9px;
+}
+#MyConfig .neo-text-btn {
+    height: 32px;
+    padding: 0 13px;
+    border: 0;
+    border-radius: 9px;
+    background: #f1f4fa;
+    color: #2c5dda;
+    font-family: var(--neo-font);
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+#MyConfig .neo-text-btn:hover {
+    background: #e7edfa;
+}
+#MyConfig .neo-text-btn.neo-primary {
+    background: #2f6bff;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(47, 107, 255, 0.24);
+}
+#MyConfig .neo-text-btn.neo-primary:hover {
+    background: #255de8;
+}
+#MyConfig .neo-text-btn.neo-settings-reset {
+    background: #fff1f0;
+    color: #c43b36;
+}
+#MyConfig .neo-text-btn.neo-settings-reset:hover {
+    background: #ffe6e4;
+}
+#MyConfig .neo-ui-mode-note {
+    margin-top: 9px;
+    padding: 8px 10px;
+    border-radius: 9px;
+    background: #f6f8fb;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #8a919b;
+}
+#MyConfig .neo-settings-select {
+    height: 32px !important;
+    min-width: 120px;
+    padding: 0 9px !important;
+    border: 1px solid #e0e4ea !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    font-size: 12px !important;
+    color: #3a414b !important;
+}
+#MyConfig .neo-settings-range {
+    width: 138px;
+    accent-color: var(--neo-accent);
+}
+#MyConfig .neo-settings-color {
+    width: 34px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    border: 1px solid #e0e4ea !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+}
+#MyConfig .neo-settings-toggle {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 13px;
-    color: var(--neo-muted);
-    background: rgba(15, 23, 42, 0.66);
-    border: 1px solid rgba(71, 85, 105, 0.5);
+    font-size: 12px;
+    color: #5c6470;
+}
+#MyConfig .neo-settings-toggle input {
+    accent-color: var(--neo-accent);
+    width: 16px;
+    height: 16px;
+}
+#MyConfig .neo-safe-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+#MyConfig .neo-safe-field {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    margin: 0 !important;
+}
+#MyConfig .neo-safe-field input[type="button"] {
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 9px;
+    border: 1px solid #e2e6ec;
+    background: #fff;
+    color: #3c434d;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#MyConfig .neo-safe-field input[type="button"]:hover {
+    background: #f6f8fb;
+}
+#MyConfig .neo-safe-field input[readonly] {
+    height: 30px !important;
+    padding: 0 11px !important;
+    border-radius: 999px !important;
+    border: 1px solid #e2e6ec !important;
+    background: #f7f8fa !important;
+    font-size: 11px !important;
+    color: #5c6470 !important;
+    width: auto !important;
+    min-width: 90px;
+}
+#MyConfig .neo-status-off {
+    color: #8a919b !important;
+}
+#MyConfig .neo-status-on {
+    color: #c43b36 !important;
+}
+
+/* 更新卡片 */
+
+#MyConfig .neo-update-card {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #e6e9ee;
+    background: #f9fafc;
+}
+#MyConfig .neo-update-card[hidden] {
+    display: none !important;
+}
+#MyConfig .neo-update-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+#MyConfig .neo-update-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2b3038;
+}
+#MyConfig .neo-update-date {
+    font-size: 11px;
+    color: #9aa1ab;
+}
+#MyConfig .neo-update-notes {
+    margin-top: 7px;
+    max-height: 150px;
+    overflow: auto;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #626b77;
+    white-space: pre-wrap;
+}
+#MyConfig .neo-update-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+#MyConfig .neo-update-status {
+    margin-top: 9px;
+    font-size: 11.5px;
+    color: #8a919b;
+}
+#MyConfig .neo-update-ok { color: #2f7a55 !important; }
+#MyConfig .neo-update-error { color: #c23b35 !important; }
+#MyConfig .neo-update-hint {
+    font-size: 11px;
+    color: #9aa1ab;
+}
+
+/* 灯台 */
+
+#MyConfig .neo-lantern-status {
+    margin-top: 2px;
+}
+#MyConfig .neo-lantern-actions {
+    margin-top: 10px;
+}
+#MyConfig .neo-lantern-warn {
+    color: #c43b36 !important;
+}
+#MyConfig .neo-lantern-diag {
+    margin-top: 10px;
+    max-height: 240px;
+    overflow: auto;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f7f8fa;
+    border: 1px solid #e6e9ee;
+    font-family: Consolas, monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #5c6470;
+    white-space: pre-wrap;
+}
+
+/* ===== 通用控件 ===== */
+
+#MyConfig input[type="text"],
+#MyConfig input[type="search"],
+#MyConfig input[type="url"],
+#MyConfig input[type="number"],
+#MyConfig select,
+#MyConfig textarea,
+#MyConfig input[type="file"] {
+    font-family: var(--neo-font) !important;
+    color: #2f353d !important;
+    background: #fff !important;
+    border: 1px solid #e0e4ea !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+    font-size: 12.5px !important;
+    outline: 0 !important;
+    transition: border-color 0.16s, box-shadow 0.16s;
+}
+#MyConfig input[type="text"],
+#MyConfig input[type="search"],
+#MyConfig input[type="url"],
+#MyConfig input[type="number"],
+#MyConfig select {
+    height: 34px !important;
+    padding: 0 10px !important;
+}
+#MyConfig textarea {
+    padding: 9px 11px !important;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 64px;
+}
+#MyConfig input[type="text"]:focus,
+#MyConfig input[type="search"]:focus,
+#MyConfig select:focus,
+#MyConfig textarea:focus,
+#MyConfig input[type="file"]:focus {
+    border-color: rgba(47, 107, 255, 0.45) !important;
+    box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.09) !important;
+}
+#MyConfig select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #8c939e 50%), linear-gradient(135deg, #8c939e 50%, transparent 50%) !important;
+    background-position: calc(100% - 14px) 14px, calc(100% - 9px) 14px !important;
+    background-size: 5px 5px, 5px 5px !important;
+    background-repeat: no-repeat !important;
+    padding-right: 26px !important;
+}
+#MyConfig input[type="file"] {
+    width: 100%;
+    padding: 5px 8px !important;
+    color: #5c6470 !important;
+    font-size: 11.5px !important;
+}
+#MyConfig input[type="file"]::file-selector-button {
+    height: 26px;
+    margin-right: 9px;
+    padding: 0 11px;
+    border: 0;
+    border-radius: 7px;
+    background: #eef2fa;
+    color: #2c5dda;
+    font-family: var(--neo-font);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#MyConfig input[type="button"],
+#MyConfig button.btn {
+    font-family: var(--neo-font) !important;
+}
+#MyConfig .btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    padding: 0 12px !important;
+    border: 1px solid #e0e4ea !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    color: #3c434d !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    line-height: 1 !important;
+}
+#MyConfig .btn:hover {
+    background: #f6f8fb !important;
+}
+#MyConfig .btn-outline-danger {
+    color: #c43b36 !important;
+    border-color: #f0c9c6 !important;
+    background: #fff6f5 !important;
+}
+#MyConfig .btn-outline-success {
+    color: #2f7a55 !important;
+    border-color: #c9e6d6 !important;
+    background: #f4fbf7 !important;
+}
+#MyConfig .config_var {
+    margin: 0 0 4px !important;
+}
+#MyConfig .field_label {
+    display: inline-block;
+    margin: 0 0 5px;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    color: #5c6470 !important;
+}
+#MyConfig .config_header {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #2b3038 !important;
+}
+#MyConfig .block > br {
+    display: none;
+}
+
+/* 让 section 头在页面内统一隐藏 */
+
+#MyConfig .neo-page .section_header,
+#MyConfig .neo-page .section_header_holder > .section_header {
+    display: none !important;
+}
+#MyConfig .neo-page .section_header_holder {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ===== 提示 / 加载遮罩 / 通用动画 ===== */
+
+#MyConfig .neo-toast {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    z-index: 5;
+    max-width: min(560px, 80%);
+    padding: 10px 16px;
     border-radius: 999px;
-    font-family: inherit;
+    background: rgba(30, 35, 44, 0.9);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translate(-50%, 8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+#MyConfig .neo-toast.neo-toast-show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* 管理器内确认弹层：不使用背景模糊 */
+#MyConfig .neo-confirm-mask {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(20, 28, 42, 0.2);
+    opacity: 0;
+    transition: opacity 0.16s ease;
+}
+#MyConfig .neo-confirm-mask.neo-confirm-show {
+    opacity: 1;
+}
+#MyConfig .neo-confirm-mask.neo-confirm-leave {
+    opacity: 0;
+}
+#MyConfig .neo-confirm-card {
+    width: min(380px, calc(100% - 8px));
+    padding: 21px 21px 17px;
+    border: 1px solid rgba(20, 28, 45, 0.08);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 20px 55px rgba(18, 28, 50, 0.18), 0 3px 10px rgba(18, 28, 50, 0.06);
+    transform: translateY(8px) scale(0.985);
+    transition: transform 0.18s ease;
+}
+#MyConfig .neo-confirm-mask.neo-confirm-show .neo-confirm-card {
+    transform: translateY(0) scale(1);
+}
+#MyConfig .neo-confirm-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+#MyConfig .neo-confirm-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #fff0f0;
+    color: #d34545;
+}
+#MyConfig .neo-confirm-icon.neo-confirm-icon-accent {
+    background: #eaf0ff;
+    color: #2f6bff;
+}
+#MyConfig .neo-confirm-icon .neo-icon {
+    width: 17px;
+    height: 17px;
+}
+#MyConfig .neo-confirm-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-top: 1px;
+}
+#MyConfig .neo-confirm-title {
+    color: #191c21;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 720;
+}
+#MyConfig .neo-confirm-name {
+    margin-top: 8px;
+    color: #303640;
+    font-size: 13px;
+    line-height: 1.55;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+#MyConfig .neo-confirm-text {
+    margin-top: 5px;
+    color: #7b838f;
+    font-size: 12px;
+    line-height: 1.65;
+}
+#MyConfig .neo-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 19px;
+}
+#MyConfig .neo-confirm-btn {
+    height: 36px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 10px;
+    font-family: var(--neo-font);
     font-size: 13px;
     font-weight: 650;
-    letter-spacing: 0.02em;
+    line-height: 1;
     cursor: pointer;
-    transition:
-        color 0.18s ease,
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+    transition: background 0.15s ease, transform 0.12s ease;
+}
+#MyConfig .neo-confirm-btn:active {
+    transform: scale(0.982);
+}
+#MyConfig .neo-confirm-cancel {
+    background: #f1f3f6;
+    color: #5c6470;
+}
+#MyConfig .neo-confirm-cancel:hover {
+    background: #e9edf2;
+}
+#MyConfig .neo-confirm-danger {
+    background: #d83b3b;
+    color: #fff;
+}
+#MyConfig .neo-confirm-danger:hover {
+    background: #c93232;
+}
+#MyConfig .neo-confirm-primary {
+    background: #2f6bff;
+    color: #fff;
+}
+#MyConfig .neo-confirm-primary:hover {
+    background: #2257dc;
 }
 
-.neo-tab:hover {
-    color: #e2e8f0;
-    border-color: rgba(34, 211, 238, 0.55);
+#MyConfig .neo-load-notice,
+#neo-load-notice {
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    left: auto;
+    bottom: auto;
+    z-index: 2147483001;
+    display: block;
+    width: min(360px, calc(100vw - 32px));
+    padding: 0;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #e3e7ee;
+    box-shadow: 0 14px 40px rgba(18, 28, 50, 0.16), 0 2px 8px rgba(18, 28, 50, 0.06);
+    backdrop-filter: none;
+    overflow: hidden;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: neoLoadToastIn 0.26s ease both;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#neo-load-notice::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #2f6bff;
+}
+#neo-load-notice::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #2f6bff, #7aa2ff);
+    transform: scaleX(1);
+    transform-origin: left center;
+    animation: neoLoadToastBar 4.2s linear forwards;
+}
+#neo-load-notice.neo-load-notice-hide {
+    opacity: 0;
+    transform: translateY(-8px);
+    animation: none;
+}
+#MyConfig .neo-load-notice .neo-load-notice-title,
+#neo-load-notice .neo-load-notice-title {
+    width: 100%;
+    padding: 12px 16px 2px 18px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #191c21;
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 720;
+}
+#MyConfig .neo-load-notice .neo-load-notice-line,
+#neo-load-notice .neo-load-notice-line {
+    width: 100%;
+    margin-top: 0;
+    padding: 2px 16px 13px 18px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #6a7280;
+    font-size: 11.5px;
+    line-height: 1.5;
+}
+#neo-load-notice b {
+    color: #191c21;
+}
+
+@keyframes neoLoadToastIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes neoLoadToastBar {
+    to { transform: scaleX(0); }
+}
+
+/* ===== 游戏内 Mod 管理器入口 ===== */
+
+#startBannerModLoaderGui {
+    display: flex !important;
+    position: fixed !important;
+    right: 14px !important;
+    left: auto !important;
+    bottom: 14px !important;
+    z-index: 2147482500 !important;
+    align-items: center;
+    gap: 8px;
+    max-width: none !important;
+    padding: 9px 14px 9px 12px !important;
+    border: 1px solid rgba(47, 107, 255, 0.22) !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    color: #2356dc !important;
+    font-family: var(--neo-font) !important;
+    font-size: 12.5px !important;
+    font-weight: 650 !important;
+    line-height: 1 !important;
+    box-shadow: 0 8px 24px rgba(20, 32, 60, 0.18), 0 2px 6px rgba(20, 32, 60, 0.08) !important;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+#startBannerModLoaderGui::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    border-radius: 5px;
+    background:
+        radial-gradient(70% 70% at 20% 15%, rgba(255, 255, 255, 0.65), transparent 60%),
+        linear-gradient(140deg, #ffae6f, #9668ff 55%, #3f86ff);
+    box-shadow: 0 2px 6px rgba(63, 134, 255, 0.22);
+}
+#startBannerModLoaderGui:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(34, 211, 238, 0.12);
+    box-shadow: 0 10px 28px rgba(20, 32, 60, 0.22), 0 2px 6px rgba(20, 32, 60, 0.08) !important;
+}
+#startBannerModLoaderGui:active {
+    transform: scale(0.97);
 }
 
-.neo-tab-active {
-    color: #06121f !important;
-    background: linear-gradient(135deg, #67e8f9, #a78bfa 60%, #f0abfc) !important;
-    border-color: transparent !important;
-    box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
-        0 0 22px rgba(34, 211, 238, 0.35);
-    animation: neoTabPop 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.neo-tab-badge {
-    min-width: 18px;
-    padding: 1px 6px;
-    color: #a5f3fc;
-    background: rgba(2, 6, 23, 0.55);
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    text-align: center;
-}
-
-.neo-tab-active .neo-tab-badge {
-    color: #082f49;
-    background: rgba(255, 255, 255, 0.72);
-}
-
-#MyConfig .neo-tab-hidden {
+html[data-neo-manager-open="1"] #startBannerModLoaderGui {
     display: none !important;
 }
 
-#MyConfig .neo-tab-panel {
-    animation: none !important;
-}
-
-#MyConfig .neo-tab-panel.neo-tab-enter {
-    animation: neoTabIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both !important;
-}
-
-#MyConfig .neo-tab-panel > .section_header {
-    display: none !important;
-}
-
-@keyframes neoTabIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes neoTabPop {
-    0% { transform: scale(0.94); }
-    60% { transform: scale(1.03); }
-    100% { transform: scale(1); }
-}
-
-@media (max-width: 720px) {
-    div#MyConfig {
-        width: 96vw !important;
-        height: 92vh !important;
-        border-radius: 14px !important;
-    }
-    #MyConfig_wrapper {
-        padding: 16px 14px 20px !important;
-    }
-    #MyConfig .section_header {
-        font-size: 12.5px !important;
-        letter-spacing: 0.1em !important;
-    }
-    #MyConfig_field_NowLoadedModeList_r {
-        min-height: 180px;
-        height: 26vh;
-    }
-    #MyConfig_field_NowSideLoadModeList_r {
-        min-height: 100px;
-        height: 14vh;
-    }
-    #MyConfig_section_0 #MyConfig_field_SafeModeState_R {
-        min-width: 110px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    #MyConfig,
-    #MyConfig *,
+@media (max-width: 760px) {
     #startBannerModLoaderGui {
-        animation: none !important;
-        transition: none !important;
+        right: 12px !important;
+        bottom: 12px !important;
+        padding: 8px 12px 8px 10px !important;
+        font-size: 12px !important;
     }
 }
 
-#MyConfig .neo-log-export,
-#MyConfig .neo-cache-clear {
-    margin-left: 8px;
+@media (max-height: 780px) and (min-width: 761px) {
+    #MyConfig .neo-hero { height: 150px; }
+    #MyConfig .neo-hero-title { font-size: 30px; }
+    #MyConfig .neo-hero-copy { padding: 20px 24px; }
+    #MyConfig .neo-main-scroll { padding-top: 2px; }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+    #MyConfig .neo-sidebar { flex-basis: 228px; width: 228px; padding-left: 12px; padding-right: 12px; }
+    #MyConfig .neo-brand-name { font-size: 17px; }
+    #MyConfig .neo-main-scroll { padding-left: 20px; padding-right: 20px; }
+    #MyConfig .neo-topbar { padding-left: 20px; padding-right: 20px; }
+    #MyConfig .neo-hero-stats { gap: 20px; }
+}
+
+@media (max-width: 760px) {
+    div#MyConfig {
+        top: 0 !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    #MyConfig .neo-shell {
+        flex-direction: column;
+    }
+    #MyConfig .neo-sidebar {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 8px;
+        gap: 9px;
+        border-right: 0;
+        border-bottom: 1px solid var(--neo-line);
+        background: #f6f7f9;
+    }
+    #MyConfig .neo-brand {
+        padding: 0 2px;
+        gap: 9px;
+    }
+    #MyConfig .neo-brand-mark {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        border-radius: 10px;
+    }
+    #MyConfig .neo-brand-mark span { left: 11px; top: 11px; width: 11px; height: 11px; }
+    #MyConfig .neo-brand-mark span::before { left: 8px; top: 8px; width: 11px; height: 11px; }
+    #MyConfig .neo-brand-name { font-size: 16px; }
+    #MyConfig .neo-brand-version { font-size: 10px; }
+    #MyConfig .neo-side-search { display: none; }
+    #MyConfig .neo-side-foot { display: none; }
+    #MyConfig .neo-nav {
+        flex-direction: row;
+        gap: 4px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+    }
+    #MyConfig .neo-nav::-webkit-scrollbar { display: none; }
+    #MyConfig .neo-nav-item {
+        flex: 0 0 auto;
+        width: auto;
+        height: 36px;
+        padding: 0 12px;
+        gap: 7px;
+        border-radius: 9px;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(20, 30, 55, 0.055);
+    }
+    #MyConfig .neo-nav-item .neo-icon { width: 15px; height: 15px; }
+    #MyConfig .neo-nav-label { font-size: 12.5px; }
+    #MyConfig .neo-nav-sep { display: none; }
+    #MyConfig .neo-tab-badge { height: 16px; min-width: 17px; font-size: 9px; }
+    #MyConfig .neo-topbar {
+        padding: 12px 16px 8px;
+        align-items: center;
+    }
+    #MyConfig .neo-topbar-title { font-size: 19px; }
+    #MyConfig .neo-topbar-subtitle { display: none; }
+    #MyConfig .neo-topbar-action {
+        width: 32px;
+        height: 32px;
+        padding: 0 !important;
+        justify-content: center;
+    }
+    #MyConfig .neo-topbar-action input[type="button"] { display: none !important; }
+    #MyConfig .neo-topbar-close {
+        width: auto !important;
+        padding: 0 12px !important;
+    }
+    #MyConfig .neo-topbar-close input[type="button"] { display: inline-block !important; }
+    #MyConfig .neo-topbar-action .neo-icon { width: 17px; height: 17px; }
+    #MyConfig .neo-main-scroll {
+        padding: 4px 14px calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+    #MyConfig .neo-hero {
+        height: 138px;
+        border-radius: 16px;
+    }
+    #MyConfig .neo-hero-copy { padding: 18px 18px; }
+    #MyConfig .neo-hero-kicker { font-size: 9px; }
+    #MyConfig .neo-hero-title { font-size: 27px; }
+    #MyConfig .neo-hero-sub { font-size: 11.5px; }
+    #MyConfig .neo-hero-stats { gap: 18px; margin-top: 12px; }
+    #MyConfig .neo-hero-stat strong { font-size: 17px; }
+    #MyConfig .neo-hero-stat span { font-size: 9.5px; }
+    #MyConfig .neo-toolbar { gap: 8px; margin-top: 14px; }
+    #MyConfig .neo-toolbar-search { flex: 1 1 100%; order: 0; }
+    #MyConfig .neo-chips { order: 1; }
+    #MyConfig .neo-toolbar-spacer { display: none; }
+    #MyConfig .neo-pill-btn { order: 2; margin-left: auto; height: 34px; padding: 0 12px; font-size: 11.5px; }
+    #MyConfig .neo-add-grid { grid-template-columns: 1fr; }
+    #MyConfig .neo-add-field:nth-child(3),
+    #MyConfig .neo-add-field:nth-child(6) { grid-column: auto; }
+    #MyConfig .neo-list-card { border-radius: 15px; }
+    #MyConfig .neo-list-head { padding: 13px 14px 6px; }
+    #MyConfig .neo-mod-row { min-height: 58px; padding: 9px 14px; gap: 11px; }
+    #MyConfig .neo-mod-avatar { width: 36px; height: 36px; flex-basis: 36px; border-radius: 10px; font-size: 13px; }
+    #MyConfig .neo-mod-name { font-size: 13px; }
+    #MyConfig .neo-mod-meta { font-size: 10.5px; }
+    #MyConfig .neo-list-drag { width: 12px; flex-basis: 12px; font-size: 10px; }
+    #MyConfig .neo-mod-delete { width: 24px; height: 24px; }
+    #MyConfig .neo-delete-wide { height: 30px; padding: 0 10px; font-size: 11px; }
+    #MyConfig .neo-switch { width: 44px; height: 27px; flex-basis: 44px; }
+    #MyConfig .neo-switch .neo-switch-knob { width: 21px; height: 21px; }
+    #MyConfig .neo-switch.neo-switch-on .neo-switch-knob { transform: translateX(17px); }
+    #MyConfig .neo-list-note { padding: 9px 14px 12px; font-size: 10.5px; }
+    #MyConfig .neo-detail-bar { gap: 10px; }
+    #MyConfig .neo-detail-name { font-size: 17px; }
+    #MyConfig .neo-detail-card { padding: 16px 15px 18px; border-radius: 15px; }
+    #MyConfig .neo-readme-body { font-size: 13px; }
+    #MyConfig #MyConfig_section_6,
+    #MyConfig #MyConfig_section_7 { padding: 13px 14px !important; border-radius: 15px !important; }
+    #MyConfig #idLoadLogHtml { max-height: 50vh; font-size: 10.5px !important; }
+    #MyConfig .neo-settings-group { padding: 13px 14px 14px; border-radius: 15px; }
+    #MyConfig .neo-settings-row { gap: 10px; }
+    #MyConfig .neo-settings-row .neo-settings-label { font-size: 12.5px; }
+    #MyConfig .neo-settings-value { font-size: 11.5px; }
+    #MyConfig .neo-order-panel { padding: 13px 12px; border-radius: 15px; }
+    #MyConfig .neo-mod-item { padding: 7px 4px !important; gap: 7px !important; }
+    #MyConfig .neo-icon-btn { width: 24px; height: 24px; }
+    #MyConfig .neo-toast { bottom: 18px; max-width: 88%; font-size: 11.5px; }
+    #MyConfig .neo-group-head { margin-top: 2px; }
+    #MyConfig .neo-group-title { font-size: 14px; }
+}
+
+@media (max-width: 520px) {
+    #MyConfig .neo-nav { gap: 3px; }
+    #MyConfig .neo-nav-item { padding: 0 8px; gap: 5px; }
+    #MyConfig .neo-nav-item .neo-icon { width: 14px; height: 14px; }
+    #MyConfig .neo-nav-label { font-size: 11px; }
+    #MyConfig .neo-tab-badge { display: none; }
+    #MyConfig .neo-confirm-mask { padding: 16px; }
+    #MyConfig .neo-confirm-card { padding: 18px 16px 14px; border-radius: 16px; }
+    #MyConfig .neo-confirm-head { gap: 11px; }
+    #MyConfig .neo-confirm-icon { flex-basis: 34px; width: 34px; height: 34px; border-radius: 10px; }
+    #MyConfig .neo-confirm-title { font-size: 15px; }
+    #MyConfig .neo-confirm-name { font-size: 12.5px; }
+    #MyConfig .neo-confirm-text { font-size: 11.5px; }
+    #MyConfig .neo-confirm-actions { margin-top: 16px; gap: 7px; }
+    #MyConfig .neo-confirm-btn { flex: 1 1 0; height: 38px; padding: 0 12px; }
+}
+
+@media (max-width: 420px) {
+    #MyConfig .neo-hero-stats { gap: 14px; }
+    #MyConfig .neo-hero-title { font-size: 24px; }
+    #MyConfig .neo-mod-name { font-size: 12.5px; }
+    #MyConfig .neo-inline-lock { display: none; }
+    #MyConfig .neo-chip { padding: 0 9px; }
 }

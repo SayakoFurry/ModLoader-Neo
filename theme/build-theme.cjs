@@ -10,15 +10,20 @@ const root = __dirname;
 const repo = path.resolve(root, '..');
 const distDir = path.join(root, 'dist');
 const cssPath = path.join(root, 'gui-neo.css');
+const classicCssPath = path.join(root, 'gui-classic.css');
 const templatePath = path.join(root, 'inject.js');
 const bootPath = path.join(root, 'boot.json');
 const outJs = path.join(distDir, 'ModLoaderNeoUI.js');
 const outZip = path.join(repo, 'dist', 'ModLoaderNeoUI.mod.zip');
 
 const css = fs.readFileSync(cssPath, 'utf8');
+const classicCss = fs.readFileSync(classicCssPath, 'utf8');
 const template = fs.readFileSync(templatePath, 'utf8');
 if (!template.includes('__NEO_CSS__')) throw new Error('inject.js is missing __NEO_CSS__');
-const js = template.replace('__NEO_CSS__', JSON.stringify(css));
+if (!template.includes('__CLASSIC_CSS__')) throw new Error('inject.js is missing __CLASSIC_CSS__');
+const js = template
+  .replace('__NEO_CSS__', JSON.stringify(css))
+  .replace('__CLASSIC_CSS__', JSON.stringify(classicCss));
 new vm.Script(js, { filename: outJs });
 
 fs.mkdirSync(distDir, { recursive: true });
@@ -39,5 +44,6 @@ const cmd = [
 execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', cmd], { stdio: 'inherit' });
 
 console.log('css  :', Buffer.byteLength(css), 'bytes');
+console.log('classic:', Buffer.byteLength(classicCss), 'bytes');
 console.log('js   :', outJs, Buffer.byteLength(js), 'bytes');
 console.log('zip  :', outZip, fs.statSync(outZip).size, 'bytes');

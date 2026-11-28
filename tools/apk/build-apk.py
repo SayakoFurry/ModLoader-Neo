@@ -5,10 +5,12 @@ Only local JDK tools are used (keytool / jarsigner / javac / java).
 The output APK is aligned and signed with both v1 and v2 APK signatures.
 
 Paths can be overridden with environment variables:
-  NEO_BASE_APK, NEO_GAME_DIR, NEO_HTML, NEO_OUT_APK, NEO_KEYSTORE, JAVA_HOME
+  NEO_BASE_APK, NEO_GAME_DIR, NEO_HTML, NEO_OUT_APK, NEO_KEYSTORE, JAVA_HOME,
+  NEO_VERSION_NAME, NEO_BASE_VERSION_NAME
 """
 import hashlib
 import os
+import re
 import shutil
 import struct
 import subprocess
@@ -27,8 +29,10 @@ BASE_APK_CANDIDATES = [
 BASE_APK_CANDIDATES = [p for p in BASE_APK_CANDIDATES if p is not None]
 BASE_APK = next((p for p in BASE_APK_CANDIDATES if p.exists()), BASE_APK_CANDIDATES[0])
 GAME_DIR = Path(os.environ["NEO_GAME_DIR"]) if os.environ.get("NEO_GAME_DIR") else ROOT.parent / "游戏本体"
-NEO_HTML = Path(os.environ["NEO_HTML"]) if os.environ.get("NEO_HTML") else GAME_DIR / "Degrees of Lewdity.neo.html"
-OUT_APK = Path(os.environ["NEO_OUT_APK"]) if os.environ.get("NEO_OUT_APK") else GAME_DIR / "ModLoader-Neo-v1.0.0.apk"
+NEO_HTML = Path(os.environ["NEO_HTML"]) if os.environ.get("NEO_HTML") else GAME_DIR / "DoL-ModLoader-Neo-0.5.12.13-v1.0.6.html"
+OUT_APK = Path(os.environ["NEO_OUT_APK"]) if os.environ.get("NEO_OUT_APK") else GAME_DIR / "DoL-ModLoader-Neo-0.5.12.13-v1.0.6.apk"
+APP_VERSION_NAME = os.environ.get("NEO_VERSION_NAME") or "1.0.6"
+BASE_VERSION_NAME = os.environ.get("NEO_BASE_VERSION_NAME") or ""
 
 TOOLS = ROOT / "tools" / "apk"
 BUILD = TOOLS / "build"
@@ -110,6 +114,195 @@ def assemble_apk_html():
     return html[:tag] + BRIDGE + html[tag:]
 
 
+VERSION_STRING_RE = re.compile(rb"(?:[0-9]\x00){1,3}(?:\.\x00(?:[0-9]\x00){1,3}){1,3}")
+
+
+def detect_manifest_version_name(data: bytes) -> str:
+    names = []
+    for match in VERSION_STRING_RE.finditer(data):
+        pos = match.start()
+        if pos < 2:
+            continue
+        try:
+            name = match.group().decode("utf-16le")
+        except UnicodeDecodeError:
+            continue
+        length = struct.unpack_from("<H", data, pos - 2)[0]
+        if length == len(name) and name not in names:
+            names.append(name)
+    if len(names) != 1:
+        raise SystemExit(
+            "cannot detect a unique AndroidManifest versionName: " + repr(names)
+        )
+    return names[0]
+
+
+def _read_pool_string(data: bytes, start: int, utf8: bool):
+    if utf8:
+        first = data[start]
+        if first & 0x80:
+            length = ((first & 0x7F) << 8) | data[start + 1]
+            pos = start + 2
+        else:
+            length = first
+            pos = start + 1
+        raw = data[pos:pos + length]
+        value = raw.decode("utf-8", errors="surrogateescape")
+        return value, pos + length + 1
+    length = struct.unpack_from("<H", data, start)[0]
+    pos = start + 2
+    if length & 0x8000:
+        length = ((length & 0x7FFF) << 16) | struct.unpack_from("<H", data, start + 2)[0]
+        pos = start + 4
+    raw = data[pos:pos + length * 2]
+    value = raw.decode("utf-16le", errors="surrogatepass")
+    return value, pos + length * 2 + 2
+
+
+def _encode_pool_string(value: str, utf8: bool) -> bytes:
+    if utf8:
+        raw = value.encode("utf-8")
+        length = len(raw)
+        if length < 0x80:
+            prefix = bytes([length])
+        elif length < 0x8000:
+            prefix = bytes([0x80 | (length >> 8), length & 0xFF])
+        else:
+            raise SystemExit("versionName is too long for a UTF-8 manifest string")
+        return prefix + raw + b"\x00"
+    raw = value.encode("utf-16le", errors="surrogatepass")
+    length = len(raw) // 2
+    if length < 0x8000:
+        prefix = struct.pack("<H", length)
+    else:
+        prefix = struct.pack("<HH", 0x8000 | (length >> 16), length & 0xFFFF)
+    return prefix + raw + b"\x00\x00"
+
+
+def patch_manifest_string_pool(data: bytes, old_name: str, new_name: str) -> bytes:
+    """Replace one string pool entry with a longer value.
+
+    The original build script only patched versionName in place, which limits
+    the new name to the length of the base APK's versionName (0.5.12.13).
+    Rebuilding the UTF-16/UTF-8 string pool keeps the attribute's string index
+    unchanged while allowing names such as 1.0.6.
+    """
+    xml_type, xml_header, xml_size = struct.unpack_from("<HHI", data, 0)
+    if xml_type != 0x0003:
+        raise SystemExit("AndroidManifest.xml is not a binary XML document")
+
+    pool_off = None
+    off = xml_header
+    while off + 8 <= len(data):
+        chunk_type, chunk_header, chunk_size = struct.unpack_from("<HHI", data, off)
+        if chunk_type == 0x0001:
+            pool_off = off
+            pool_head = chunk_header
+            pool_size = chunk_size
+            break
+        if chunk_size <= 0:
+            break
+        off += chunk_size
+    if pool_off is None:
+        raise SystemExit("AndroidManifest.xml string pool not found")
+
+    string_count, style_count, flags, strings_start, styles_start = struct.unpack_from(
+        "<IIIII", data, pool_off + 8
+    )
+    if style_count:
+        raise SystemExit("styled AndroidManifest string pools are not supported")
+    utf8 = bool(flags & 0x100)
+    min_strings_start = pool_head + (string_count + style_count) * 4
+    if strings_start < min_strings_start:
+        raise SystemExit("AndroidManifest string pool has an invalid stringsStart")
+
+    data_start = pool_off + strings_start
+    data_end = pool_off + (styles_start if styles_start else pool_size)
+    offsets = [
+        struct.unpack_from("<I", data, pool_off + pool_head + index * 4)[0]
+        for index in range(string_count)
+    ]
+
+    values = []
+    target = None
+    for index, offset in enumerate(offsets):
+        start = data_start + offset
+        if start < data_start or start >= data_end:
+            raise SystemExit("AndroidManifest string offset is out of range")
+        value, end = _read_pool_string(data, start, utf8)
+        if end > data_end:
+            raise SystemExit("AndroidManifest string overruns the string pool")
+        values.append(value)
+        if value == old_name:
+            if target is not None:
+                raise SystemExit("versionName string is not unique in AndroidManifest")
+            target = index
+    if target is None:
+        raise SystemExit("versionName string not found in AndroidManifest string pool")
+
+    encoded = [_encode_pool_string(value, utf8) for value in values]
+    encoded[target] = _encode_pool_string(new_name, utf8)
+    new_data = b"".join(encoded)
+    new_offsets = []
+    cursor = 0
+    for chunk in encoded:
+        new_offsets.append(cursor)
+        cursor += len(chunk)
+
+    new_pool_size = strings_start + len(new_data)
+    pool = bytearray()
+    pool += struct.pack("<HHI", 0x0001, pool_head, new_pool_size)
+    pool += struct.pack("<IIIII", string_count, style_count, flags, strings_start, styles_start)
+    if pool_head > 28:
+        pool += data[pool_off + 28:pool_off + pool_head]
+    for offset in new_offsets:
+        pool += struct.pack("<I", offset)
+    if len(pool) < strings_start:
+        pool += b"\x00" * (strings_start - len(pool))
+    elif len(pool) > strings_start:
+        raise SystemExit("AndroidManifest string offsets overlap string data")
+    pool += new_data
+
+    delta = len(pool) - pool_size
+    result = bytearray()
+    result += data[:xml_header]
+    struct.pack_into("<I", result, 4, xml_size + delta)
+    result += data[xml_header:pool_off]
+    result += pool
+    result += data[pool_off + pool_size:]
+    return bytes(result)
+
+
+def patch_manifest_version_name(data: bytes) -> bytes:
+    old_name = BASE_VERSION_NAME or detect_manifest_version_name(data)
+    new_name = APP_VERSION_NAME
+    if old_name == new_name:
+        return data
+    if len(new_name) > len(old_name):
+        return patch_manifest_string_pool(data, old_name, new_name)
+    old_bytes = old_name.encode("utf-16le")
+    pos = data.find(old_bytes)
+    if pos < 2 or data.find(old_bytes, pos + 1) >= 0:
+        raise SystemExit(
+            "AndroidManifest versionName %r not found exactly once" % old_name
+        )
+    length_pos = pos - 2
+    old_length = struct.unpack_from("<H", data, length_pos)[0]
+    if old_length != len(old_name):
+        raise SystemExit(
+            "AndroidManifest versionName length mismatch: %r" % old_name
+        )
+    region = old_length * 2 + 2
+    new_bytes = new_name.encode("utf-16le")
+    replacement = new_bytes + b"\x00" * (region - len(new_bytes))
+    return (
+        data[:length_pos]
+        + struct.pack("<H", len(new_name))
+        + replacement
+        + data[length_pos + 2 + region:]
+    )
+
+
 def repackage(apk_html: bytes, target: Path, extra_entries=None):
     with zipfile.ZipFile(BASE_APK, "r") as zin, zipfile.ZipFile(target, "w") as zout:
         for info in zin.infolist():
@@ -123,6 +316,8 @@ def repackage(apk_html: bytes, target: Path, extra_entries=None):
             data = zin.read(info)
             if name == "assets/www/index.html":
                 data = apk_html
+            elif name == "AndroidManifest.xml":
+                data = patch_manifest_version_name(data)
             out = zipfile.ZipInfo(name, date_time=info.date_time)
             out.compress_type = info.compress_type
             out.external_attr = info.external_attr
@@ -308,6 +503,7 @@ def main():
         raise SystemExit("Neo HTML not found: " + str(NEO_HTML))
     jdk = find_jdk()
     print("JDK:", jdk)
+    print("versionName:", APP_VERSION_NAME)
     ensure_keystore(jdk)
     compile_helper(jdk)
 

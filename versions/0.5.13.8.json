@@ -1,0 +1,60 @@
+{
+  "schema": "neo-version/1",
+  "gameVersion": "0.5.13.8",
+  "versionName": "0.5.13.8",
+  "engineVersion": "2.36.1",
+  "verified": true,
+  "anchor": {
+    "strategy": "script-libraries",
+    "fallback": "head",
+    "note": "Insert the pack/loader before the SugarCube script-libraries block emitted by Tweego."
+  },
+  "loader": {
+    "minNeoVersion": "1.0.0",
+    "testedWith": [
+      "1.0.6"
+    ]
+  },
+  "integrate": {
+    "mode": "stock-boot",
+    "patterns": [
+      "sc2-minified"
+    ],
+    "note": "Official stock 0.5.13.8 runs the SugarCube boot body through jQuery((()=>...)). It must be moved behind window.mainStart so mods initialize first."
+  },
+  "patches": [
+    {
+      "id": "boot-hook-modloader",
+      "required": true,
+      "unique": true,
+      "find": "window.mainStart();window.initI10n(l10nStrings);",
+      "replace": "// inject ModLoader on there\nif (typeof window.modSC2DataManager !== 'undefined') {\nwindow.modSC2DataManager.startInit().then(() => window.jsPreloader.startLoad()).then(() => {window.mainStart();window.initI10n(l10nStrings);}).catch(err => {console.error(err);});}else {window.mainStart();window.initI10n(l10nStrings);\n}",
+      "already": "// inject ModLoader on there",
+      "revertFind": "// inject ModLoader on there\nif (typeof window.modSC2DataManager !== 'undefined') {\nwindow.modSC2DataManager.startInit().then(() => window.jsPreloader.startLoad()).then(() => {window.mainStart();window.initI10n(l10nStrings);}).catch(err => {console.error(err);});}else {window.mainStart();window.initI10n(l10nStrings);\n}",
+      "revertReplace": "window.mainStart();window.initI10n(l10nStrings);"
+    },
+    {
+      "id": "importSave-empty-file-guard",
+      "required": false,
+      "unique": true,
+      "find": "function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\n\t\tconst reader = new FileReader();",
+      "replace": "function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\t\tif (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== \"number\") return; // no file selected\n\n\t\tconst reader = new FileReader();",
+      "already": "if (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== \"number\") return;"
+    },
+    {
+      "id": "importSettings-empty-file-guard",
+      "required": false,
+      "unique": true,
+      "find": "\t\tcase \"file\":\n\t\t\treader = new FileReader();",
+      "replace": "\t\tcase \"file\":\n\t\t\tif (!data || !data.length || !data[0] || typeof data[0].size !== \"number\") break; // no file selected\n\t\t\treader = new FileReader();",
+      "already": "if (!data || !data.length || !data[0] || typeof data[0].size !== \"number\") break;"
+    }
+  ],
+  "notes": [
+    "Verified on the official stock 0.5.13.8 HTML (sha256 7191c738...), not just a roundtrip from the Neo build.",
+    "Bare loader, 2-mod pack (ModLoaderGui + ModLoaderNeoUI), and all 26 built-in mods were installed from this stock file and boot-smoked to the Start passage; 26 mods were loaded with no dialogs.",
+    "The SugarCube engine is 381366 bytes and shares its first 380004 bytes with the 0.5.12.13 Neo engine; only the boot wrapper differs.",
+    "The installer refactors that wrapper into window.mainStart, injects dist/i10n-sc2patch.js, then installs the loader and optional pack.",
+    "Import guards are optional on stock; a missing anchor is reported as a warning, not a failure."
+  ]
+}

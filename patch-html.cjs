@@ -29,6 +29,48 @@ function sha(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
 }
 
+const GAME_PATCHES = [
+  {
+    name: 'importSave empty-file guard',
+    search: 'function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\n\t\tconst reader = new FileReader();',
+    replace: 'function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\t\tif (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== "number") return; // no file selected\n\n\t\tconst reader = new FileReader();',
+    already: 'if (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== "number") return;',
+  },
+  {
+    name: 'importSettings empty-file guard',
+    search: '\t\tcase "file":\n\t\t\treader = new FileReader();',
+    replace: '\t\tcase "file":\n\t\t\tif (!data || !data.length || !data[0] || typeof data[0].size !== "number") break; // no file selected\n\t\t\treader = new FileReader();',
+    already: 'if (!data || !data.length || !data[0] || typeof data[0].size !== "number") break;',
+  },
+];
+
+function applyGamePatches(buf) {
+  let current = buf;
+  const report = [];
+  for (const patch of GAME_PATCHES) {
+    const search = Buffer.from(patch.search, 'utf8');
+    const replace = Buffer.from(patch.replace, 'utf8');
+    if (current.indexOf(Buffer.from(patch.already, 'utf8')) >= 0) {
+      report.push(patch.name + ' (already applied)');
+      continue;
+    }
+    const at = current.indexOf(search);
+    if (at < 0) {
+      throw new Error('game patch not found: ' + patch.name);
+    }
+    if (current.indexOf(search, at + search.length) >= 0) {
+      throw new Error('game patch is not unique: ' + patch.name);
+    }
+    current = Buffer.concat([
+      current.slice(0, at),
+      replace,
+      current.slice(at + search.length),
+    ]);
+    report.push(patch.name);
+  }
+  return { buf: current, patches: report };
+}
+
 function main() {
   const args = parseArgs(process.argv);
   if (args.help) {
@@ -40,7 +82,9 @@ function main() {
     if (!fs.existsSync(p)) throw new Error('not found: ' + p);
   }
 
-  const src = fs.readFileSync(args.html);
+  const original = fs.readFileSync(args.html);
+  const patched = applyGamePatches(original);
+  const src = patched.buf;
   const bundleText = fs.readFileSync(args.bundle, 'utf8');
   if (/<\/script/i.test(bundleText)) throw new Error('bundle contains </script and cannot be embedded safely');
 
@@ -58,10 +102,12 @@ function main() {
   const written = next.slice(check.contentStart, check.close).toString('utf8');
   if (written !== bundleText) throw new Error('verification failed: embedded bundle differs');
 
-  console.log('source   :', args.html, src.length, 'bytes');
+  console.log('source   :', args.html, original.length, 'bytes');
+  console.log('game fix :', patched.patches.join(', '));
+  console.log('patched  :', src.length, 'bytes');
   console.log('bundle   :', args.bundle, Buffer.byteLength(bundleText), 'bytes');
   console.log('output   :', args.out, next.length, 'bytes');
-  console.log('delta    :', next.length - src.length, 'bytes');
+  console.log('delta    :', next.length - original.length, 'bytes');
   console.log('prefix sha:', sha(src.slice(0, loc.contentStart)) === sha(next.slice(0, check.contentStart)) ? 'same' : 'CHANGED');
   console.log('suffix sha:', sha(src.slice(loc.close)) === sha(next.slice(check.close)) ? 'same' : 'CHANGED');
   console.log('embedded :', 'verified');

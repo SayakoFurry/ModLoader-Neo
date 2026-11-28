@@ -4,7 +4,7 @@
     "cn": "ModLoader Neo 界面",
     "en": "ModLoader Neo UI"
   },
-  "version": "1.0.0",
+  "version": "1.0.6",
   "styleFileList": [],
   "scriptFileList_earlyload": [],
   "scriptFileList_inject_early": [],

@@ -60,6 +60,46 @@ function base64ToUint8Array(base64) {
     }
     return bytes;
 }
+async function loadZipFromData(data, originalData, loaderBase, log) {
+    let bytes;
+    if (typeof data === 'string') {
+        bytes = base64ToUint8Array(data);
+        originalData = data;
+    }
+    else if (data instanceof Uint8Array) {
+        bytes = data;
+        originalData = data;
+    }
+    else if (data instanceof ArrayBuffer) {
+        bytes = new Uint8Array(data);
+        originalData = bytes;
+    }
+    else if (data instanceof Blob) {
+        bytes = new Uint8Array(await data.arrayBuffer());
+        originalData = bytes;
+    }
+    else {
+        throw new Error('[ModLoader] unsupported zip data type');
+    }
+    if (bytes.byteOffset !== 0 || bytes.byteLength !== bytes.buffer.byteLength) {
+        bytes = bytes.slice();
+    }
+    const adaptorClass = _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor;
+    let modPack = null;
+    try {
+        if (await adaptorClass.checkByHash(bytes)) {
+            modPack = await new adaptorClass().loadAsync(bytes);
+        }
+    }
+    catch (e) {
+        modPack = null;
+    }
+    if (modPack) {
+        return new ModZipReader(modPack, '', loaderBase, log);
+    }
+    const zip = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(bytes);
+    return new ModZipReader(zip, originalData, loaderBase, log);
+}
 function Twee2Passage2(s) {
     const tweeList = [];
     const lines = s.split(/\r?\n/);
@@ -873,21 +913,9 @@ class LocalStorageLoader extends LoaderBase {
                 continue;
             }
             try {
-                const mpr = new _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor();
-                const modPack = await mpr.loadAsync(base64ZipString, { base64: true });
-                if (modPack) {
-                    const m = new ModZipReader(modPack, '', this, this.log);
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
-                }
-                else {
-                    const m = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(base64ZipString, { base64: true }).then(zip => {
-                        return new ModZipReader(zip, base64ZipString, this, this.log);
-                    });
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
+                const m = await loadZipFromData(base64ZipString, base64ZipString, this, this.log);
+                if (await m.init()) {
+                    this.modList.push(m);
                 }
             }
             catch (E) {
@@ -1008,21 +1036,9 @@ class IndexDBLoader extends LoaderBase {
                 continue;
             }
             try {
-                const mpr = new _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor();
-                const modPack = await mpr.loadAsync(base64ZipString, { base64: true });
-                if (modPack) {
-                    const m = new ModZipReader(modPack, '', this, this.log);
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
-                }
-                else {
-                    const m = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(base64ZipString, { base64: true }).then(zip => {
-                        return new ModZipReader(zip, base64ZipString, this, this.log);
-                    });
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
+                const m = await loadZipFromData(base64ZipString, base64ZipString, this, this.log);
+                if (await m.init()) {
+                    this.modList.push(m);
                 }
             }
             catch (E) {
@@ -1211,21 +1227,9 @@ class Base64ZipStringLoader extends LoaderBase {
         // modDataBase64ZipStringList: base64[]
         for (const base64ZipString of this.base64ZipStringList) {
             try {
-                const mpr = new _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor();
-                const modPack = await mpr.loadAsync(base64ZipString, { base64: true });
-                if (modPack) {
-                    const m = new ModZipReader(modPack, '', this, this.log);
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
-                }
-                else {
-                    const m = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(base64ZipString, { base64: true }).then(zip => {
-                        return new ModZipReader(zip, base64ZipString, this, this.log);
-                    });
-                    if (await m.init()) {
-                        this.modList.push(m);
-                    }
+                const m = await loadZipFromData(base64ZipString, base64ZipString, this, this.log);
+                if (await m.init()) {
+                    this.modList.push(m);
                 }
             }
             catch (E) {
@@ -1255,25 +1259,9 @@ class LocalLoader extends LoaderBase {
                 // modDataValueZipList: base64[]
                 for (const modDataValueZip of modDataValueZipList) {
                     try {
-                        const mpr = new _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor();
-                        // console.log('ModPackFileReaderJsZipAdaptor', mpr);
-                        const modPack = await mpr.loadAsync(modDataValueZip, { base64: true });
-                        // console.log('ModLoader ====== LocalLoader load() modDataValueZip', [/*modDataValueZip*/, modPack]);
-                        if (modPack) {
-                            const m = new ModZipReader(modPack, '', this, this.log);
-                            // console.log('modDataValueZip boot', await m.zip.file('boot.json')?.async('string'));
-                            if (await m.init()) {
-                                // console.log('modDataValueZip m', m);
-                                this.modList.push(m);
-                            }
-                        }
-                        else {
-                            const m = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(modDataValueZip, { base64: true }).then(zip => {
-                                return new ModZipReader(zip, modDataValueZip, this, this.log);
-                            });
-                            if (await m.init()) {
-                                this.modList.push(m);
-                            }
+                        const m = await loadZipFromData(modDataValueZip, modDataValueZip, this, this.log);
+                        if (await m.init()) {
+                            this.modList.push(m);
                         }
                     }
                     catch (E) {
@@ -1311,17 +1299,7 @@ class RemoteLoader extends LoaderBase {
                     const m = await fetch(modFileZipPath)
                         .then(async (T) => {
                         const blob = await T.blob();
-                        const mpr = new _ModPack_ModPackJsZipAdaptor__WEBPACK_IMPORTED_MODULE_9__.ModPackFileReaderJsZipAdaptor();
-                        const modPack = await mpr.loadAsync(blob);
-                        if (modPack) {
-                            const zipFile = new ModZipReader(modPack, '', this, this.log);
-                            return zipFile;
-                        }
-                        else {
-                            const base64ZipString = await blobToBase64(blob);
-                            const zipFile = await jszip__WEBPACK_IMPORTED_MODULE_0___default().loadAsync(blob);
-                            return new ModZipReader(zipFile, base64ZipString, this, this.log);
-                        }
+                        return await loadZipFromData(blob, blob, this, this.log);
                     });
                     if (await m.init()) {
                         this.modList.push(m);

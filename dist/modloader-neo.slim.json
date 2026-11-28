@@ -1,0 +1,25 @@
+{
+  "schema": "neo-payloads/2",
+  "extractedAt": "2026-11-28T04:25:45.829Z",
+  "source": {
+    "file": "E:\\Modloader-豆包\\游戏本体\\DoL-ModLoader-Neo-0.5.12.13-v1.0.6.html",
+    "sha256": "f94458cac9082fad68a178a4b5ec2d5e819aa299114aac7a579f45922e3c7451",
+    "size": 62942109,
+    "gameVersion": "0.5.12.13",
+    "engineVersion": "2.36.1"
+  },
+  "loader": {
+    "file": "E:\\Modloader-豆包\\ModLoader-Neo-Source\\dist\\modloader-neo.slim.js",
+    "sha256": "13b2d46c48495454fe0fd1ad588eab43e0e0709ffee7f099b415c33c6b557567",
+    "size": 2581732,
+    "version": "2.101.1",
+    "neoVersion": "1.0.6"
+  },
+  "i10n": {
+    "file": "E:\\Modloader-豆包\\ModLoader-Neo-Source\\dist\\i10n-sc2patch.js",
+    "sha256": "d0bc56537b2271182e320679b16db8c026307843b22db172f8b9af1468bae45f",
+    "size": 6113,
+    "id": "i10n-sc2patch",
+    "offset": 62528817
+  }
+}

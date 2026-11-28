@@ -1,0 +1,61 @@
+{
+  "schema": "neo-version/1",
+  "gameVersion": "0.5.12.13",
+  "versionName": "Abyssal",
+  "engineVersion": "2.36.1",
+  "verified": true,
+  "anchor": {
+    "strategy": "script-libraries",
+    "fallback": "head",
+    "note": "Insert before the SugarCube engine script emitted by Tweego."
+  },
+  "loader": {
+    "minNeoVersion": "1.0.0",
+    "testedWith": [
+      "1.0.6"
+    ]
+  },
+  "integrate": {
+    "mode": "auto",
+    "patterns": [
+      "sc2-minified",
+      "sc2-pretty"
+    ],
+    "note": "The 0.5.12.13 Neo build already has window.mainStart; official stock 0.5.12.13 was not downloaded, so the generic stock-boot refactor is enabled as a fallback."
+  },
+  "patches": [
+    {
+      "id": "boot-hook-modloader",
+      "required": true,
+      "unique": true,
+      "find": "window.mainStart();window.initI10n(l10nStrings);",
+      "replace": "// inject ModLoader on there\nif (typeof window.modSC2DataManager !== 'undefined') {\nwindow.modSC2DataManager.startInit().then(() => window.jsPreloader.startLoad()).then(() => {window.mainStart();window.initI10n(l10nStrings);}).catch(err => {console.error(err);});}else {window.mainStart();window.initI10n(l10nStrings);\n}",
+      "already": "// inject ModLoader on there",
+      "revertFind": "// inject ModLoader on there\nif (typeof window.modSC2DataManager !== 'undefined') {\nwindow.modSC2DataManager.startInit().then(() => window.jsPreloader.startLoad()).then(() => {window.mainStart();window.initI10n(l10nStrings);}).catch(err => {console.error(err);});}else {window.mainStart();window.initI10n(l10nStrings);\n}",
+      "revertReplace": "window.mainStart();window.initI10n(l10nStrings);"
+    },
+    {
+      "id": "importSave-empty-file-guard",
+      "required": false,
+      "unique": true,
+      "find": "function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\n\t\tconst reader = new FileReader();",
+      "replace": "function importSave(saveFile) {\n\t\tif (!window.FileReader) return; // Browser is not compatible\n\t\tif (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== \"number\") return; // no file selected\n\n\t\tconst reader = new FileReader();",
+      "already": "if (!saveFile || !saveFile.length || !saveFile[0] || typeof saveFile[0].size !== \"number\") return;"
+    },
+    {
+      "id": "importSettings-empty-file-guard",
+      "required": false,
+      "unique": true,
+      "find": "\t\tcase \"file\":\n\t\t\treader = new FileReader();",
+      "replace": "\t\tcase \"file\":\n\t\t\tif (!data || !data.length || !data[0] || typeof data[0].size !== \"number\") break; // no file selected\n\t\t\treader = new FileReader();",
+      "already": "if (!data || !data.length || !data[0] || typeof data[0].size !== \"number\") break;"
+    }
+  ],
+  "notes": [
+    "Roundtrip verified on 0.5.12.13 (loader 1.0.6): source was produced by stripping the Neo build (loader+pack) and reverting all three patches, then reinstalling and boot-smoking with 2 and 26 mods.",
+    "The official stock 0.5.12.13 HTML was not downloaded separately; the boot-hook anchor matches the text the ModLoader builder patched.",
+    "The stock-boot engine refactor is available as a fallback but is verified only on stock 0.5.13.8 and 0.5.0.6.",
+    "Both import guards are optional; a missing anchor downgrades to a warning instead of aborting install.",
+    "script-libraries is emitted by the DoL Tweego template and is the stable pre-engine insertion point."
+  ]
+}

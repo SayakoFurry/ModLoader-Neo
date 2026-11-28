@@ -36,7 +36,7 @@ class ModUtils {
         return '2.101.1';
     }
     get neoVersion() {
-        return '1.0.0';
+        return '1.0.6';
     }
     constructor(pSC2DataManager, thisWin) {
         this.pSC2DataManager = pSC2DataManager;

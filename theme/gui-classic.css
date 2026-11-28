@@ -1,0 +1,846 @@
+#MyConfig.neo-classic {
+    --neo-cyan: #555;
+    --neo-violet: #444;
+    --neo-pink: #666;
+    --neo-ink: #111;
+    --neo-muted: #333;
+    --neo-panel: #808080;
+    --neo-line: #555;
+}
+
+div#MyConfig.neo-classic,
+body#MyConfig.neo-classic {
+    color: #111 !important;
+    background: #808080 !important;
+    background-image: none !important;
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+    scrollbar-width: auto;
+    scrollbar-color: #666 #a0a0a0;
+}
+
+#MyConfig.neo-classic #MyConfig_wrapper {
+    padding: 14px 16px 18px !important;
+}
+
+#MyConfig.neo-classic,
+#MyConfig.neo-classic * {
+    font-family: Arial, Tahoma, "Microsoft YaHei", sans-serif !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+#MyConfig.neo-classic textarea,
+#MyConfig.neo-classic pre,
+#MyConfig.neo-classic code,
+#MyConfig.neo-classic .neo-update-notes,
+#MyConfig.neo-classic .neo-spell-entry-code,
+#MyConfig.neo-classic .neo-spell-history-code {
+    font-family: Consolas, "Cascadia Code", monospace !important;
+}
+
+#MyConfig.neo-classic #MyConfig_header {
+    margin: 0 0 8px !important;
+    padding: 4px 0 8px !important;
+    color: #f2f2f2 !important;
+    background: none !important;
+    font-size: 20pt !important;
+    font-weight: normal !important;
+    letter-spacing: normal !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    text-transform: none !important;
+    -webkit-text-fill-color: #f2f2f2 !important;
+    filter: none !important;
+}
+
+#MyConfig.neo-classic #MyConfig_header::after {
+    display: none !important;
+}
+
+#MyConfig.neo-classic .neo-tab-panel > .section_header {
+    display: block !important;
+    margin: 8px 0 10px !important;
+    padding: 4px 8px !important;
+    color: #f2f2f2 !important;
+    background: #414141 !important;
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    font-size: 13pt !important;
+    font-weight: normal !important;
+    letter-spacing: normal !important;
+    text-align: center !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .section_header::before,
+#MyConfig.neo-classic .section_header::after {
+    display: none !important;
+}
+
+#MyConfig.neo-classic .field_label {
+    margin: 2px 0 4px !important;
+    color: #111 !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+}
+
+#MyConfig.neo-classic input[type="text"],
+#MyConfig.neo-classic input[type="file"],
+#MyConfig.neo-classic input[type="password"],
+#MyConfig.neo-classic input[type="number"],
+#MyConfig.neo-classic select,
+#MyConfig.neo-classic textarea {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    caret-color: #000 !important;
+}
+
+#MyConfig.neo-classic input[type="text"]:hover,
+#MyConfig.neo-classic input[type="file"]:hover,
+#MyConfig.neo-classic select:hover,
+#MyConfig.neo-classic textarea:hover {
+    background: #e2dfda !important;
+    border-color: #000 !important;
+}
+
+#MyConfig.neo-classic input[type="text"]:focus,
+#MyConfig.neo-classic input[type="file"]:focus,
+#MyConfig.neo-classic input[type="password"]:focus,
+#MyConfig.neo-classic input[type="number"]:focus,
+#MyConfig.neo-classic select:focus,
+#MyConfig.neo-classic textarea:focus {
+    background: #f0eeea !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic select option {
+    color: #000 !important;
+    background: #e2dfda !important;
+}
+
+#MyConfig.neo-classic input[type="file"]::file-selector-button {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic input[type="file"]::file-selector-button:hover {
+    background: #e2dfda !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic input[type="button"],
+#MyConfig.neo-classic button {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    letter-spacing: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic input[type="button"]:hover,
+#MyConfig.neo-classic button:hover {
+    background: #e2dfda !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic input[type="button"]:active,
+#MyConfig.neo-classic button:active {
+    background: #bdb9b2 !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic input[type="button"]:focus-visible,
+#MyConfig.neo-classic button:focus-visible {
+    outline: 1px dotted #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic input.btn-outline-danger,
+#MyConfig.neo-classic input.btn-outline-success,
+#MyConfig.neo-classic .neo-text-btn.neo-danger,
+#MyConfig.neo-classic .neo-text-btn.neo-success {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border-color: #555 !important;
+}
+
+#MyConfig.neo-classic input.btn-outline-danger:hover,
+#MyConfig.neo-classic input.btn-outline-success:hover,
+#MyConfig.neo-classic .neo-text-btn.neo-danger:hover,
+#MyConfig.neo-classic .neo-text-btn.neo-success:hover {
+    background: #e2dfda !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-text-btn.neo-primary {
+    color: #fff !important;
+    background: #414141 !important;
+    border-color: #000 !important;
+    font-weight: bold !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-text-btn.neo-primary:hover {
+    background: #414141 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic input[type="checkbox"] {
+    accent-color: #333 !important;
+}
+
+#MyConfig.neo-classic input[type="checkbox"]:hover {
+    transform: none !important;
+    filter: none !important;
+}
+
+#MyConfig.neo-classic input.neo-ripple {
+    animation: none !important;
+}
+
+#MyConfig.neo-classic::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+#MyConfig.neo-classic::-webkit-scrollbar-track {
+    background: #a0a0a0 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic::-webkit-scrollbar-thumb {
+    background: #666 !important;
+    border: 1px solid #444 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic textarea::-webkit-scrollbar,
+#MyConfig.neo-classic select::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+#MyConfig.neo-classic textarea::-webkit-scrollbar-thumb,
+#MyConfig.neo-classic select::-webkit-scrollbar-thumb {
+    background: #666 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .section_desc {
+    color: #575757 !important;
+    background: #efefef !important;
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic #idLoadLogHtml {
+    color: #111 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    font-family: Consolas, "Cascadia Code", monospace !important;
+}
+
+#MyConfig.neo-classic #idLoadLogHtml > div:not([style*="background"]) {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic #MyConfig_section_0 #MyConfig_SafeModeState_R_var::before {
+    display: none !important;
+}
+
+#MyConfig.neo-classic #MyConfig_section_0 #MyConfig_field_SafeModeState_R,
+#MyConfig.neo-classic #MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-on,
+#MyConfig.neo-classic #MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-off,
+#MyConfig.neo-classic #MyConfig_section_0 #MyConfig_field_SafeModeState_R.neo-status-auto {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-align: left;
+}
+
+#MyConfig.neo-classic .neo-toolbar-divider {
+    background: #555 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-subsection-title {
+    color: #111 !important;
+    border-top: 1px solid #555 !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+#MyConfig.neo-classic .enable-order-component-host {
+    border-top: 1px solid #666 !important;
+}
+
+#MyConfig.neo-classic .enable-order-component-title {
+    color: #111 !important;
+    letter-spacing: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-order-group-label {
+    color: #222 !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+#MyConfig.neo-classic .neo-order-status {
+    color: #070 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-order-status-error {
+    color: #700 !important;
+    background: #d6c6c6 !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item {
+    color: #111 !important;
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item:hover {
+    background: #b8b5b0 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item[style*="pink"] {
+    color: #111 !important;
+    background: #c8c5c0 !important;
+    border-color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item.neo-dragging {
+    opacity: 0.7 !important;
+    transform: none !important;
+    border-style: dotted !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item.neo-drop-before {
+    box-shadow: inset 0 2px 0 #000 !important;
+}
+
+#MyConfig.neo-classic .neo-mod-item.neo-drop-after {
+    box-shadow: inset 0 -2px 0 #000 !important;
+}
+
+#MyConfig.neo-classic .neo-drag-handle {
+    color: #444 !important;
+}
+
+#MyConfig.neo-classic .neo-drag-handle:hover {
+    color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-mod-name {
+    color: #111 !important;
+    font-weight: bold !important;
+}
+
+#MyConfig.neo-classic .neo-mod-meta {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-icon-btn {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-icon-btn:hover:not(:disabled) {
+    color: #000 !important;
+    background: #e2dfda !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic .neo-readme-heading {
+    color: #111 !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-list {
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-item {
+    color: #111 !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-weight: normal !important;
+}
+
+#MyConfig.neo-classic .neo-readme-item:hover {
+    color: #000 !important;
+    background: #b8b5b0 !important;
+    border-color: #555 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-item.neo-readme-item-active {
+    color: #fff !important;
+    background: #414141 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-readme-head {
+    border-bottom: 1px solid #555 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-title {
+    color: #111 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+#MyConfig.neo-classic .neo-readme-version {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-version span {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body h1,
+#MyConfig.neo-classic .neo-readme-body h2,
+#MyConfig.neo-classic .neo-readme-body h3,
+#MyConfig.neo-classic .neo-readme-body h4,
+#MyConfig.neo-classic .neo-readme-body h5,
+#MyConfig.neo-classic .neo-readme-body h6 {
+    color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body code {
+    color: #000 !important;
+    background: #c8c5c0 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body pre {
+    background: #c8c5c0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body pre code {
+    background: transparent !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body blockquote {
+    color: #111 !important;
+    background: #a8a5a0 !important;
+    border-left: 3px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body a {
+    color: #000 !important;
+    border-bottom: 1px dotted #000 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-body a:hover {
+    color: #000 !important;
+    border-bottom-color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-loading,
+#MyConfig.neo-classic .neo-readme-empty {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-readme-error {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic #neo-tabbar {
+    background: #808080 !important;
+    border-bottom: 1px solid #555 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-tab {
+    color: #111 !important;
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    letter-spacing: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic .neo-tab:hover {
+    color: #000 !important;
+    background: #c0bdb8 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic .neo-tab-active {
+    color: #fff !important;
+    background: #414141 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+#MyConfig.neo-classic .neo-tab-badge {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #777 !important;
+}
+
+#MyConfig.neo-classic .neo-tab-active .neo-tab-badge {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#MyConfig.neo-classic .neo-settings-intro,
+#MyConfig.neo-classic .neo-settings-group-desc,
+#MyConfig.neo-classic .neo-ui-mode-note,
+#MyConfig.neo-classic .neo-update-status,
+#MyConfig.neo-classic .neo-update-hint {
+    color: #222 !important;
+}
+
+#MyConfig.neo-classic .neo-settings-group {
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-settings-group-title {
+    color: #111 !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-settings-label {
+    color: #222 !important;
+    font-weight: bold !important;
+}
+
+#MyConfig.neo-classic .neo-settings-value {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic .neo-settings-value.neo-lantern-warn {
+    color: #8b0000 !important;
+}
+
+#MyConfig.neo-classic .neo-lantern-diag {
+    color: #111 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic input[type="range"].neo-settings-range {
+    accent-color: #333 !important;
+}
+
+#MyConfig.neo-classic input[type="color"].neo-settings-color {
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-settings-toggle {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic .neo-update-card {
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-update-title {
+    color: #111 !important;
+    font-weight: bold !important;
+    letter-spacing: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-update-date {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-update-notes {
+    color: #111 !important;
+    background: #c8c5c0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-update-status.neo-update-ok {
+    color: #070 !important;
+}
+
+#MyConfig.neo-classic .neo-update-status.neo-update-error {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-warning {
+    color: #700 !important;
+    background: #d6c6c6 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic textarea.neo-spell-input {
+    color: #000 !important;
+    background: #d6d3ce !important;
+}
+
+#MyConfig.neo-classic button.neo-spell-run {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border-color: #555 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic button.neo-spell-run:hover {
+    background: #e2dfda !important;
+    border-color: #000 !important;
+    filter: none !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-spell-secondary {
+    color: #000 !important;
+    background: #d6d3ce !important;
+    border-color: #555 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-spell-secondary.neo-spell-danger {
+    color: #700 !important;
+    border-color: #555 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-status {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-status-error {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry {
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-left: 3px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-ok {
+    border-left-color: #070 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-error {
+    border-left-color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-status {
+    color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-error .neo-spell-entry-status {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-time {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-code {
+    color: #111 !important;
+    background: #c8c5c0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-body {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-entry-body a {
+    color: #000 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-error {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-empty {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic button.neo-spell-history-item {
+    color: #111 !important;
+    background: #a8a5a0 !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic button.neo-spell-history-item:hover {
+    background: #b8b5b0 !important;
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+#MyConfig.neo-classic .neo-spell-history-code {
+    color: #111 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-history-item-error .neo-spell-history-code {
+    color: #700 !important;
+}
+
+#MyConfig.neo-classic .neo-spell-history-time {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-config-loading {
+    color: #333 !important;
+}
+
+#MyConfig.neo-classic .neo-config-loading-error {
+    color: #700 !important;
+}
+
+body.neo-classic-mode #startBannerModLoaderGui {
+    display: block !important;
+    right: auto !important;
+    left: 10px !important;
+    bottom: 12px !important;
+    max-width: none !important;
+    padding: 0.25em !important;
+    color: #808080 !important;
+    background: transparent !important;
+    border: 2px dashed gray !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    animation: none !important;
+    font-weight: normal !important;
+}
+
+body.neo-classic-mode #startBannerModLoaderGui:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+body.neo-classic-mode #neo-load-notice {
+    color: #111 !important;
+    background: #d6d3ce !important;
+    border: 1px solid #555 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+}
+
+body.neo-classic-mode #neo-load-notice::after {
+    background: #555 !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+body.neo-classic-mode #neo-load-notice-title {
+    color: #000 !important;
+    text-shadow: none !important;
+}
+
+body.neo-classic-mode #neo-load-notice-line {
+    color: #222 !important;
+}
+
+body.neo-classic-mode #neo-load-notice-line b {
+    color: #000 !important;
+    text-shadow: none !important;
+}
+
+body.neo-classic-mode #neo-load-notice.neo-load-notice-hide {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+@media (max-width: 720px) {
+    #MyConfig.neo-classic #MyConfig_wrapper {
+        padding: 10px 10px 16px !important;
+    }
+    #MyConfig.neo-classic #MyConfig_header {
+        margin-bottom: 4px !important;
+        padding: 2px 0 6px !important;
+        font-size: 15pt !important;
+    }
+    #MyConfig.neo-classic .neo-tab-panel > .section_header {
+        margin: 4px 0 8px !important;
+        padding: 4px 6px !important;
+        font-size: 11pt !important;
+    }
+    #MyConfig.neo-classic input[type="button"],
+    #MyConfig.neo-classic button {
+        min-width: 56px;
+        padding: 5px 8px !important;
+        font-size: 12px !important;
+    }
+    #MyConfig.neo-classic .neo-readme-host {
+        height: auto;
+    }
+}
