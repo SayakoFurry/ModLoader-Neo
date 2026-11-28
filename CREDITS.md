@@ -1,5 +1,9 @@
 ## 欲都孤儿 贡献者名单
 > 20261002
+### 参与 ModLoader Neo 建设的诸位（排名不分先后）：
+- SayakoFurry——ModLoader Neo 维护者
+- TXF182(星月夜)——MapleLantern 灯台 mod 作者
+- Dingdang255——DoLLauncher 作者（提供 Neo 版本下载支持）
 ### 为汉化做出过贡献的诸位（排名不分先后）：
 <details>
 <summary>点击展开</summary>
